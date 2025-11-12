@@ -32,7 +32,7 @@ function apriSignUp(){
 function apriHome(){
     window.location.href = "index.html";
 }
-/*var map = L.map('mappa').setView([46.0669, 11.1167], 12);
+var map = L.map('mappa').setView([46.0669, 11.1167], 12);
 
 //Aggiungi il layer della mappa (da OpenStreetMap)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -65,4 +65,4 @@ L.control.form({ position: 'topright' }).addTo(map);
 
 // 11. (FONDAMENTALE) Impedisce alla mappa di "catturare" i click dentro la form
 var formElement = document.getElementById('form-percorso');
-L.DomEvent.disableClickPropagation(formElement);*/
+L.DomEvent.disableClickPropagation(formElement);

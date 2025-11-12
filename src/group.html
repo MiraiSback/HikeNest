@@ -26,7 +26,7 @@
         <div class = "sezione-iniziale">
             <h1 class = "sezione-iniziale-title">Trova la tua comunità</h1>
             <p class = "sezione-iniziale-text">Entra in contatto con altri escursionisti, unisciti ad avventure di gruppo e scopri nuovi sentieri insieme. La montagna chiama, e tu non sei solo.</p>
-            <button id = "btnCreazioneGruppo">Crea Un Gruppo</button>
+            <button id = "btnCreazioneGruppo" class = "btn-group">CREA UN GRUPPO</button>
         </div>
     </section>
     <div id = "formCreazioneGruppo" class = "hidden">
@@ -37,7 +37,7 @@
                 <label for="nomeGruppo">Nome del Gruppo</label>
                 <input type="text" id = "nomeGruppo">
                 <label for="descrizione">Descrizione</label>
-                <input type="text" id = "descrizione" style = "height: 5vw;">
+                <input type="text" id = "descrizione" style = "height: 7vw;">
                 <div class = "tendina-wrapper">
                     <div class = "single-tendina">
                         <label for="livelloDifficolta">Livello di Difficoltà</label>
@@ -87,6 +87,9 @@
                 </div>
                 <label for="regoleGruppo">Regole del Gruppo (Opzionali)</label>
                 <input type="text" id = "regoleGruppo">
+                <div>
+                    <input type="button" value="Crea Gruppo" id = "btnForm">
+                </div>
             </form>
         </div>
     </div>

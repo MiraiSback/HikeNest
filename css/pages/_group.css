@@ -11,6 +11,22 @@
 .chiudi:hover {
     color: #333;
 }
+
+#btnCreazioneGruppo{
+    box-sizing: border-box;
+    height: 2.5rem;
+    border-radius: var(--radius-piccolo);
+    cursor: pointer;
+    padding: 0 1rem; 
+    margin: 0.5vw;
+    font-size: 0.9rem; 
+}
+
+#btnCreazioneGruppo:hover{
+    background-color: #cdcdcd;
+    transform: translateY(2px);
+}
+
 .contenuto-form{
     background-color: var(--colore-grigio-nebbia);
     padding: 30px;
@@ -43,44 +59,38 @@
     flex-direction: column;
 }
 
-.hidden-form input{
-    margin-top:1vw;
-    margin-bottom: 1vw;
-    height: 2vw;
-    border: 1px solid var(--colore-azzurro-polvere);
-    border-radius: 0.2vw;
-}
-
 .tendina-wrapper{
     display:flex;
     flex-direction: row;
     gap: 1rem;
 }
 
-.tendina{
+.hidden-form input[type = "text"], .tendina{
+    box-sizing: border-box;
     margin-top:1vw;
     margin-bottom:1vw;
-    border-color: var(--colore-azzurro-polvere);
-    border-radius: 0.2vw;
+    height: 3vw;
+    border: 1px solid var(--colore-azzurro-polvere);
+    border-radius: 0.4vw;
 }
 
 .single-tendina{
     flex:1;
-
     display:flex;
     flex-direction: column;
-
 }
 
 
 .single-radio{
     flex: 1;
     border: 1px solid var(--colore-azzurro-polvere);
-    border-radius: 0.2vw;
+    border-radius: 0.4vw;
     display: flex;
-    align-items: center; /* Allinea verticalmente input e label! */
-    gap: 0.5rem;         /* Spazio tra input e label */
+    align-items: center; 
+    gap: 0.5rem;         
     padding: 0.5rem;
+    box-sizing: border-box;
+    height: 3vw;
 }
 
 .single-radio input{
@@ -93,4 +103,23 @@
     margin-top:1vw;
     margin-bottom:1vw;
     gap: 1rem;  
+}
+
+#btnForm{
+    width: 40%;
+    margin-left:auto;
+    margin-right:auto;
+    display: block;
+    background-color: var(--colore-blu-elettrico);
+    color: white;
+    box-sizing: border-box;
+    height: 3vw;
+    border: none;
+    border-radius:0.4vw;
+}
+
+#btnForm:hover{
+    background-color: #0056b3;
+    transform: translateY(2px);
+    cursor: pointer;
 }
