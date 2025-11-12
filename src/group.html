@@ -31,29 +31,59 @@
     </section>
     <div id = "formCreazioneGruppo" class = "hidden">
         <div class = "contenuto-form">
+            <h2>Crea un Nuovo Gruppo</h2>
             <span id = "btnChiudi" class = "chiudi">&times;</span>
             <form class = "hidden-form">
-                <h2>Crea un Nuovo Gruppo</h2>
                 <label for="nomeGruppo">Nome del Gruppo</label>
                 <input type="text" id = "nomeGruppo">
                 <label for="descrizione">Descrizione</label>
-                <input type="text" id = "descrizione">
-                <div>
-                    <label for="livelloDifficolta">Livello di Difficoltà</label>
-                    <select name="" id="livelloDifficolta">
-                    </select>
-                    <label for="maxSize">Numero Max Membri</label>
-                    <select name="" id="maxSize">
-                    </select>
+                <input type="text" id = "descrizione" style = "height: 5vw;">
+                <div class = "tendina-wrapper">
+                    <div class = "single-tendina">
+                        <label for="livelloDifficolta">Livello di Difficoltà</label>
+                        <select name="" id="livelloDifficolta" class = "tendina">
+                            <option value="">Selezione Difficoltà</option>
+                            <option value="">Easy</option>   
+                            <option value="">Medium</option>                       
+                            <option value="">Challenging</option>                       
+                        </select>
+                    </div>
+                    <div class = "single-tendina">
+                        <label for="maxSize">Numero Max Membri</label>
+                        <select name="" id="maxSize" class = "tendina">
+                            <option value="">Selezione Membri Max</option>
+                            <option value="">10 Membri</option>   
+                            <option value="">20 Membri</option>                       
+                            <option value="">30 Membri</option> 
+                            <option value="">Senza Limiti</option>
+                        </select>
+                    </div>
                 </div>
-                <label for="localitaPrincipale"></label>
+                <label for="localitaPrincipale">Località Principale</label>
                 <input type="text" id = "localiaPrincipale">
                 <label for="tipoGruppo">Tipo di Gruppo</label>
                 <div id = "tipoGruppo">
-                    <input type="radio" name="Casual Hiking" id="">
-                    <input type="radio" name="Technical Climbing" id="">
-                    <input type="radio" name="Social & Fun" id="">
-                    <input type="radio" name="Fitness Training" id="">
+                    <div class = "row-radio">
+                        <div class = "single-radio">
+                            <input type="radio" name="radioGroup" id="casualHiking">
+                            <label for="casualHiking">Casual Hiking</label>
+                        </div>
+                        <div class = "single-radio">
+                            <input type="radio" name="radioGroup" id="techHiking">
+                            <label for="techHiking">Technical Climbing</label>
+                        </div>
+                        
+                    </div>
+                    <div class = "row-radio">
+                        <div class = "single-radio">
+                            <input type="radio" name="radioGroup" id="socialHiking">
+                            <label for="socialHiking">Social & Fun</label>
+                        </div>
+                        <div class = "single-radio">
+                            <input type="radio" name="radioGroup" id="fitHiking">                        
+                            <label for="fitHiking">Fitness Training</label>
+                        </div>     
+                    </div>
                 </div>
                 <label for="regoleGruppo">Regole del Gruppo (Opzionali)</label>
                 <input type="text" id = "regoleGruppo">

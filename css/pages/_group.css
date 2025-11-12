@@ -1,7 +1,7 @@
 .chiudi {
+    top:3vw;
+    right:2vw;
     position: absolute;
-    top: 10px;
-    right: 20px;
     font-size: 28px;
     font-weight: bold;
     color: #aaa;
@@ -18,6 +18,8 @@
     width: 400px;
     position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    max-height: 85vh; /* Altezza massima: 85% dell'altezza dello schermo */
+    overflow-y: auto;
 }
 
 #formCreazioneGruppo{
@@ -34,4 +36,61 @@
     align-items: center;
     
     z-index: 1000;
+}
+
+.hidden-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden-form input{
+    margin-top:1vw;
+    margin-bottom: 1vw;
+    height: 2vw;
+    border: 1px solid var(--colore-azzurro-polvere);
+    border-radius: 0.2vw;
+}
+
+.tendina-wrapper{
+    display:flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.tendina{
+    margin-top:1vw;
+    margin-bottom:1vw;
+    border-color: var(--colore-azzurro-polvere);
+    border-radius: 0.2vw;
+}
+
+.single-tendina{
+    flex:1;
+
+    display:flex;
+    flex-direction: column;
+
+}
+
+
+.single-radio{
+    flex: 1;
+    border: 1px solid var(--colore-azzurro-polvere);
+    border-radius: 0.2vw;
+    display: flex;
+    align-items: center; /* Allinea verticalmente input e label! */
+    gap: 0.5rem;         /* Spazio tra input e label */
+    padding: 0.5rem;
+}
+
+.single-radio input{
+    flex-shrink: 0; 
+    margin: 0;
+}
+
+.row-radio{
+    display: flex;
+    margin-top:1vw;
+    margin-bottom:1vw;
+    gap: 1rem;  
 }
