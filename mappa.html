@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HikeNest - Map</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+    <div class="navbar">
+        <img src="resources/Logo.png" alt="LogoHikeNest" onclick="apriHome()">
+        <div class = "link-group">
+            <a href="mappa.html">Map</a>
+            <a href="about.html">About Us</a>
+            <a href="group.html">Hike Group</a>
+            <a href="#hikepost">Hike Posts</a>
+            <a href="#yourhikes">Your Hikes</a>
+        </div>
+        <div class = "btn-group">
+            <button onclick = "apriLogIn()">LOG IN</button>
+            <button onclick = "apriSignUp()">SIGN UP</button>
+        </div>
+    </div>
+    <div class = "selezione-percorso">
+        <div id="mappa">
+        </div>
+        <form class = "percorso-form" id = "form-percorso">
+            <div class = "percorso-input">
+                <p>Punto di partenza</p>
+                <input type="text" placeholder="Scegli la partenza" >
+                <p>Destinazione</p>
+                <input type="text" placeholder="Scegli la destinazione">
+            </div>
+        </form>
+    </div>
+
+    <script src = "script.js"></script>
+
+</body>
+</html>

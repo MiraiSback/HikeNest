@@ -1,0 +1,22 @@
+:root{
+    /* Palette Principale */
+    --colore-grigio-nebbia: #f0f0f3;
+    --colore-grigio-caldo: #c9c1b9;
+    --colore-taupe: #a89f97;
+    --colore-azzurro-polvere: #b0c0cf;
+    --colore-carbone: #4a4441;
+
+    /* Palette Contrastante */
+    --colore-arancio-segnale: #FF5F1F;
+    --colore-blu-elettrico: #007BFF;
+    --colore-verde-smeraldo: #00C753;
+    --colore-bianco-ottico: #FFFFFF;
+    --colore-nero-intenso: #111111;
+
+    /* Font */
+    --font-principale: "Roboto", Helvetica, sans-serif;
+    
+    /* Altri valori utili */
+    --radius-piccolo: clamp(5px, 0.5vw, 8px);
+    --radius-grande: 2rem;
+}
