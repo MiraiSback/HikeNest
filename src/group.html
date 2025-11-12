@@ -29,15 +29,29 @@
             <button id = "btnCreazioneGruppo" class = "btn-group">CREA UN GRUPPO</button>
         </div>
     </section>
+
+    <div class = "ricerca-wrapper">
+        <div class = "ricerca-icona-wrapper">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="text" id = "ricercaGruppi" placeholder="Cerca il gruppo dal nome, zona di interessa... ">
+        </div>
+        <div class = "btn-group-livello">
+            <button id = "allLevel">All Levels</button>
+            <button id = "easyLevel">Easy</button>
+            <button id = "mediumLevel">Medium</button>
+            <button id = "challengingLevel">Challenging</button>
+        </div>
+    </div>
+
     <div id = "formCreazioneGruppo" class = "hidden">
         <div class = "contenuto-form">
             <h2>Crea un Nuovo Gruppo</h2>
             <span id = "btnChiudi" class = "chiudi">&times;</span>
             <form class = "hidden-form">
                 <label for="nomeGruppo">Nome del Gruppo</label>
-                <input type="text" id = "nomeGruppo">
+                <input type="text" id = "nomeGruppo" placeholder = "e.g. Il Gruppo delle Meraviglie...">
                 <label for="descrizione">Descrizione</label>
-                <input type="text" id = "descrizione" style = "height: 7vw;">
+                <textarea name="" id="" class = "txtArea" placeholder="Descrivi il tuo gruppo, l'obiettivo che ha, cosa lo rende speciale..."></textarea>
                 <div class = "tendina-wrapper">
                     <div class = "single-tendina">
                         <label for="livelloDifficolta">Livello di Difficoltà</label>
@@ -60,7 +74,7 @@
                     </div>
                 </div>
                 <label for="localitaPrincipale">Località Principale</label>
-                <input type="text" id = "localiaPrincipale">
+                <input type="text" id = "localiaPrincipale" placeholder="e.g. Le Alpi, Trentino, Dolomiti...">
                 <label for="tipoGruppo">Tipo di Gruppo</label>
                 <div id = "tipoGruppo">
                     <div class = "row-radio">
@@ -86,7 +100,7 @@
                     </div>
                 </div>
                 <label for="regoleGruppo">Regole del Gruppo (Opzionali)</label>
-                <input type="text" id = "regoleGruppo">
+                <textarea name="" id="" class = "txtArea" placeholder="Qualsiasi regola o requisito speciale per essere membri del gruppo" ></textarea>
                 <div>
                     <input type="button" value="Crea Gruppo" id = "btnForm">
                 </div>
