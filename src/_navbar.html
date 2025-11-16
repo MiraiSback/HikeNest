@@ -3,12 +3,12 @@
   <label for="menu-toggle" class="menu-icon">
     <span></span> <span></span> <span></span>
   </label>
-  <img
-    src="../resources/Logo.png"
-    alt="LogoHikeNest"
-    onclick="apriHome()"
-    class="navbar-logo"
-  />
+  <a href="index.html" class="navbar-logo">
+    <img
+        src="../resources/Logo.png"
+        alt="LogoHikeNest"
+    />
+  </a>
   <div class="navbar-content">
     <div class="link-group">
       <a href="mappa.html">Map</a>
@@ -18,8 +18,8 @@
       <a href="#yourhikes">Your Hikes</a>
     </div>
     <div class="btn-group">
-      <button onclick="apriLogIn()">LOG IN</button>
-      <button onclick="apriSignUp()">SIGN UP</button>
+      <button id = "btn-login">LOG IN</button>
+      <button id = "btn-signup">SIGN UP</button>
     </div>
   </div>
 </nav>
