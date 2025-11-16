@@ -22,6 +22,12 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 });
+fetch('_navbar.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+    });
+
 function apriLogIn(){
     window.location.href = "login.html";
 }
