@@ -1,0 +1,50 @@
+openapi: 3.0.4
+info:
+  version: '1.0'
+  title: "HikeNest OpenAPI 1.0"
+  description: API built to manage group hikes.
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Localhost
+  - url: http://questositononesiste.com
+    description: da cambiare in fase di deploy
+paths: 
+  /authentication:
+    post:
+      summary: Autenticazione di un utente
+      description: Autentica uno user creando un token di sessione JWT
+      responses:
+        '200' :
+          description: Token creato
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: True se l'utente è riuscito ad autenticarsi
+                  token:
+                    type: string
+                    description: Token di autenticazione
+        '401' : 
+          description: Credenziali sbagliate
+      requestBody:
+        description: Nel body devono essere presenti username e password
+        required: true
+        content: 
+          application/json:
+            schema: 
+              type: object
+              required:
+                - mail
+                - password
+              properties:
+                mail:
+                  type: string
+                  description: Mail dell'utente
+                password: 
+                  type: string
+                  description: Password dell'utente
