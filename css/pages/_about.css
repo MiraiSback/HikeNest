@@ -126,3 +126,28 @@
 .contatti-buttons a:hover {
   background-color: #cdcdcd;
 }
+
+#j-title {
+  color: var(--colore-blu-elettrico);
+}
+
+#a-title {
+  color: var(--colore-arancio-segnale);
+}
+
+#n-title {
+  color: var(--colore-verde-smeraldo);
+}
+
+#img-mission1 {
+  background-color: var(--colore-blu-elettrico);
+}
+#img-mission2 {
+  background-color: var(--colore-arancio-segnale);
+}
+#img-mission3 {
+  background-color: var(--colore-verde-smeraldo);
+}
+#img-contact {
+  margin-right: 1rem;
+}
