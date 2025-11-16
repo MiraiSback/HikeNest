@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const apriBtn = document.getElementById("btnCreazioneGruppo");
   const chiudiBtn = document.getElementById("btnChiudi");
   const overlay = document.getElementById("formCreazioneGruppo");
+  const logoForm = document.getElementById("logoForm");
+
+  logoForm.addEventListener("click", apriHome);
 
   function apriForm() {
     overlay.classList.remove("hidden");
