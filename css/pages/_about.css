@@ -1,130 +1,128 @@
-.sezione-inizale-wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-     
+.sezione-inizale-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.sezione-iniziale{
-    background: linear-gradient(rgba(0, 0, 0,0), #f0f0f3),url("../../resources/SfondoTagliato.jpg") center/cover no-repeat;
-    min-height: 50vh;
-    mask-image: linear-gradient(to bottom, black 83%, transparent 90%);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    animation: fadeInSlideUp 0.6s ease-out 0.2s backwards; 
-    will-change: transform, opacity;
+.sezione-iniziale {
+  background: linear-gradient(rgba(0, 0, 0, 0), #f0f0f3),
+    url("../../resources/SfondoTagliato.jpg") center/cover no-repeat;
+  min-height: 50vh;
+  mask-image: linear-gradient(to bottom, black 83%, transparent 90%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: fadeInSlideUp 0.6s ease-out 0.2s backwards;
+  will-change: transform, opacity;
 }
 .sezione-iniziale-title {
-    color: #2b2b2b;
-    font-size: 5rem; 
-    
-    margin-top: 0;
-    margin-bottom: 1rem; 
+  color: #2b2b2b;
+  font-size: 5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .sezione-iniziale-text {
-    color: #2b2b2b; 
-    font-size: 1.5rem; 
-    width: 75%;        
-    
-    margin-top: 0; 
+  color: #2b2b2b;
+  font-size: 1.5rem;
+  width: 75%;
+
+  margin-top: 0;
 }
 /*Seconda sezione*/
-.sezione-mission{
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    justify-self: center;
-    width: 75%;
-    margin-bottom: 1.5vw;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 2rem;
+.sezione-mission {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+  width: 75%;
+  margin-bottom: 1.5vw;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 2rem;
 }
 
-.mission-text{
-    color: #2b2b2b;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+.mission-text {
+  color: #2b2b2b;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
-.mission-text p{
-    color: #555454;
+.mission-text p {
+  color: #555454;
 }
-.mission-objectives{
-    margin-top: 3vw;
-    display:flex;
-    flex-direction: row;
-}
-
-.objective{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 33%;
-    margin-left: 3rem;
-    margin-right: 3rem;
-    margin-bottom: 3vw;
-}
-.objective p{
-    color: #555454;
+.mission-objectives {
+  margin-top: 3vw;
+  display: flex;
+  flex-direction: row;
 }
 
-.objective i{
-    
-  width: 5vw;  
-  height: 5vw; 
-  
-  border-radius: 50%;       
+.objective {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 33%;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-bottom: 3vw;
+}
+.objective p {
+  color: #555454;
+}
 
-  display: inline-flex;    
-  justify-content: center;  
-  align-items: center; 
+.objective i {
+  width: 5vw;
+  height: 5vw;
+
+  border-radius: 50%;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
   color: white;
   font-size: 24px;
 }
 /*Terza sezione*/
-.contatti{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-self: center;
-    width: 75%;
+.contatti {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  width: 75%;
 }
 
-.contatti-text{
-    font-size: 1.5rem;
-    text-align: center;
-    margin: 1rem;
+.contatti-text {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 1rem;
 }
-.contatti-buttons{
-    margin-bottom: 3rem;
+.contatti-buttons {
+  margin-bottom: 3rem;
 }
-.contatti-buttons a{
-    color:#2b2b2b;
-    text-decoration: none;
-    border: 2px solid black; 
-    flex: 1;
-    width: clamp(80px, 7vw, 120px);
-    cursor: pointer;
-    border-radius: clamp(5px, 0.5vw, 8px); 
-    padding: 0.5rem;
-    font-size: 1rem; 
+.contatti-buttons a {
+  color: #2b2b2b;
+  text-decoration: none;
+  border: 2px solid black;
+  flex: 1;
+  width: clamp(80px, 7vw, 120px);
+  cursor: pointer;
+  border-radius: clamp(5px, 0.5vw, 8px);
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 
-.contatti-buttons a:hover{
-    background-color: #cdcdcd;
+.contatti-buttons a:hover {
+  background-color: #cdcdcd;
 }
