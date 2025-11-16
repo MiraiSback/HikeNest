@@ -1,3 +1,5 @@
+@media only screen and (min-width: 900px){
+
 .navbar{
     display: flex;
     align-items: center;
@@ -5,10 +7,23 @@
     background-color: var(--colore-grigio-nebbia);
     overflow: hidden;
     height: clamp(50px, 5vw, 70px); /*Ho chiesto al maestro e mi fa che usare clamp è più moderno*/
+
+}
+
+#menu-toggle{
+    display: none;
+}
+
+.navbar-content{
+    display: flex;
+    align-items: center;
+    justify-content: justify-evenly;
+    width: 100%;
+    transition: none;
 }
 
 .navbar img{
-    margin-left: auto;
+    margin-left: 10vw;
     height: clamp(40px, 6vw, 70px); /*clamp funziona tipo clamp(grandezza minima, desiderata, massima)*/;
     object-fit: contain;
     align-items: center;
@@ -19,6 +34,7 @@
 }
 
 .navbar a{
+    flex-grow: 1;   
     float: left;
     display: block;
     color: black;
@@ -66,4 +82,5 @@
 
 .btn-group button:hover{
     background-color: #cdcdcd;
+}
 }
