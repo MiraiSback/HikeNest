@@ -1,7 +1,6 @@
 .form-log-in {
   margin-top: 4vw;
   margin-bottom: 4vw; /*Di base non servirebbe, ma la form di sign up è troppo lunga*/
-  border: 2px solid var(--colore-grigio-caldo);
   height: auto;
   padding: 2rem;
   width: clamp(300px, 30vw, 450px);
@@ -11,13 +10,6 @@
   justify-content: center;
   border-radius: 2vw;
   align-items: center;
-  /*Serve per fare bordo ed ombra della form*/
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* Per Safari */
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-
   border-radius: 2rem;
 }
 
