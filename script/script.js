@@ -28,7 +28,6 @@ function setupPageListeners() {
   if (apriBtn) apriBtn.addEventListener("click", () => overlay.classList.remove("hidden"));
   if (chiudiBtn) chiudiBtn.addEventListener("click", () => overlay.classList.add("hidden"));
   if (logoForm) logoForm.addEventListener("click", () => goTo("index.html"));
-  
   if (overlay) {
     overlay.addEventListener("click", (e) => {
       if (e.target === overlay) overlay.classList.add("hidden");
