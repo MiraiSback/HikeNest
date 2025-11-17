@@ -7,7 +7,7 @@
 }
 
 .sezione-iniziale {
-  background: linear-gradient(rgba(0, 0, 0, 0), #f0f0f3),
+  background: linear-gradient(rgba(0, 0, 0, 0), var(--colore-hover)),
     url("../../resources/SfondoTagliato.jpg") center/cover no-repeat;
   min-height: 50vh;
   mask-image: linear-gradient(to bottom, black 83%, transparent 90%);
@@ -21,14 +21,14 @@
   will-change: transform, opacity;
 }
 .sezione-iniziale-title {
-  color: #2b2b2b;
+  color: var(--colore-scuro);
   font-size: 5rem;
   margin-top: 0;
   margin-bottom: 1rem;
 }
 
 .sezione-iniziale-text {
-  color: #2b2b2b;
+  color: var(--colore-scuro);
   font-size: 1.5rem;
   width: 75%;
 
@@ -51,14 +51,14 @@
 }
 
 .mission-text {
-  color: #2b2b2b;
+  color: var(--colore-scuro);
   width: 100%;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
 .mission-text p {
-  color: #555454;
+  color: var(--colore-carbone);
 }
 .mission-objectives {
   margin-top: 3vw;
@@ -78,7 +78,7 @@
   margin-bottom: 3vw;
 }
 .objective p {
-  color: #555454;
+  color: var(--colore-carbone);
 }
 
 .objective i {
@@ -112,7 +112,7 @@
   margin-bottom: 3rem;
 }
 .contatti-buttons a {
-  color: #2b2b2b;
+  color: var(--colore-scuro);
   text-decoration: none;
   border: 2px solid black;
   flex: 1;
@@ -124,7 +124,7 @@
 }
 
 .contatti-buttons a:hover {
-  background-color: #cdcdcd;
+  background-color: var(--colore-hover);
 }
 
 #j-title {

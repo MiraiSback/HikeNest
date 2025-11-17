@@ -1,96 +1,93 @@
-@media only screen and (min-width: 900px) {
-  .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--colore-grigio-nebbia);
-    overflow: hidden;
-    height: clamp(
-      50px,
-      5vw,
-      70px
-    ); /*Ho chiesto al maestro e mi fa che usare clamp è più moderno*/
-  }
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--colore-grigio-nebbia);
+  overflow: hidden;
+  height: clamp(
+    50px,
+    5vw,
+    70px
+  ); /*Ho chiesto al maestro e mi fa che usare clamp è più moderno*/
+}
 
-  #menu-toggle {
-    display: none;
-  }
+#menu-toggle {
+  display: none;
+}
 
-  .navbar-content {
-    display: flex;
-    align-items: center;
-    justify-content: justify-evenly;
-    width: 100%;
-    transition: none;
-  }
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: justify-evenly;
+  width: 100%;
+  transition: none;
+}
 
-  .navbar img {
-    margin-left: 10vw;
-    height: clamp(
-      40px,
-      6vw,
-      70px
-    ); /*clamp funziona tipo clamp(grandezza minima, desiderata, massima)*/
-    object-fit: contain;
-    align-items: center;
-  }
+.navbar img {
+  margin-left: 10vw;
+  height: clamp(
+    40px,
+    6vw,
+    70px
+  ); /*clamp funziona tipo clamp(grandezza minima, desiderata, massima)*/
+  object-fit: contain;
+  align-items: center;
+}
 
-  .navbar img:hover {
-    cursor: pointer;
-  }
+.navbar img:hover {
+  cursor: pointer;
+}
 
-  .navbar a {
-    flex-grow: 1;
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 1vw;
-    text-decoration: none;
-    position: relative;
-    font-size: 1rem; /* Mi è stato detto di usare rem, perché si basa sulla grandezza del font del browser */
-  }
+.navbar a {
+  flex-grow: 1;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 1vw;
+  text-decoration: none;
+  position: relative;
+  font-size: 1rem; /* Mi è stato detto di usare rem, perché si basa sulla grandezza del font del browser */
+}
 
-  .navbar a::after {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    background-color: black;
-    width: 0;
-    transition: width 0.3s ease-out;
-  }
+.navbar a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: black;
+  width: 0;
+  transition: width 0.3s ease-out;
+}
 
-  .navbar a:hover::after {
-    width: 100%;
-  }
+.navbar a:hover::after {
+  width: 100%;
+}
 
-  /*Cose che gli elementi della navbar devono ereditare*/
-  .link-group {
-    gap: 5vw;
-    display: flex;
-    margin: auto;
-  }
+/*Cose che gli elementi della navbar devono ereditare*/
+.link-group {
+  gap: 5vw;
+  display: flex;
+  margin: auto;
+}
 
-  /*Stile dei bottoni della navbar*/
-  .btn-group button {
-    flex: 1;
-    width: clamp(80px, 7vw, 120px);
-    height: 2.5rem; /*Mi è stato inoltre detto che l'altezza di solito non viene settata con vw ma con rem */
-    cursor: pointer;
-    border-radius: clamp(
-      5px,
-      0.5vw,
-      8px
-    ); /* Anche il radius può essere bloccato */
-    padding: 0 1rem;
-    margin: 0.5vw;
-    font-size: 0.9rem;
-  }
+/*Stile dei bottoni della navbar*/
+.btn-group button {
+  flex: 1;
+  width: clamp(80px, 7vw, 120px);
+  height: 2.5rem; /*Mi è stato inoltre detto che l'altezza di solito non viene settata con vw ma con rem */
+  cursor: pointer;
+  border-radius: clamp(
+    5px,
+    0.5vw,
+    8px
+  ); /* Anche il radius può essere bloccato */
+  padding: 0 1rem;
+  margin: 0.5vw;
+  font-size: 0.9rem;
+}
 
-  .btn-group button:hover {
-    background-color: #cdcdcd;
-  }
+.btn-group button:hover {
+  background-color: var(--colore-hover);
 }
