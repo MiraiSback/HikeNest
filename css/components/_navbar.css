@@ -100,7 +100,7 @@
 @media only screen and (max-width: 768px) {
   .navbar {
     display: flex;
-    height: 5rem;
+    height: 9vh;
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;

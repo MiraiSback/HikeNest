@@ -35,7 +35,7 @@
 }
 @media only screen and (max-width: 768px) {
   .background-img {
-    height: 100dvh;
+    height: 91dvh;
     width: 100%;
     position: relative;
     background-image: url("../../resources/Sfondo.jpg");
@@ -43,6 +43,7 @@
     background-size: cover;
     background-position: center center;
     overflow: hidden;
+    display: flex;
     align-items: center;
     justify-content: center;
   }
