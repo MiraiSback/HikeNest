@@ -27,9 +27,10 @@
 }
 
 .form-log-in img {
-  height: clamp(80px, 10vw, 120px);
+  height: clamp(50px, 5vw, 80px);
   padding-left: 0;
   padding-right: 0;
+  margin-bottom:1rem;
   object-fit: contain; /* Assicura che non si distorca */
 }
 .form-log-in img:hover {
