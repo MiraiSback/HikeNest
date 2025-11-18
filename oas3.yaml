@@ -48,3 +48,149 @@ paths:
                 password: 
                   type: string
                   description: Password dell'utente
+  /gruppi:
+    get:
+      summary: Lista dei gruppi
+      description: Ottieni la lista di tutti i gruppi, per ottenerne uno solo usa /gruppi/{IDgruppo}
+      responses:
+        '200':
+          description: Lista dei gruppi
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: '#/components/schemas/Gruppo'
+    post:
+      summary: Crea un nuovo gruppo
+      description: Creazione di un nuovo gruppo inviando i dati necessari
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: "#/components/schemas/Gruppo"
+      responses: 
+        '201':
+          description: Gruppo creato
+          headers: 
+            location:
+              schema:
+                type: string
+              description: Link al nuovo gruppo
+      
+    
+    
+  /gruppi/{IDGruppo}:
+    get:
+      summary: Pagina di un gruppo
+      description: Ottieni informazioni riguardo un singolo gruppo
+      parameters:
+        - in : path
+          name: IDGruppo
+          required: true
+          schema: 
+            type: string
+          description: ID del gruppo
+      responses:
+        '200':
+          description: Gruppo trovato
+          content:  
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Gruppo" 
+        '404':
+          description: Gruppo non trovato
+  
+  /percorsi:
+    get:
+      summary: Lista di tutti i percorsi
+      description: Ottieni la lista completa di tutti i percorsi, eventualmente filtrati per lunghezza
+      parameters:
+      - in: query #usiamo query per fare /percorsi?minKm=1&maxKm=100 invece che path che consente un solo param
+        name: minKm
+        schema:
+          type: number
+          format: float
+        required: false
+        description: Lunghezza minima del percorso in km
+      - in: query
+        name: maxKm
+        schema:
+          type: number
+          format: float
+        required: false
+        description: Lunghezza massima del percorso in km
+      responses:
+        '200':
+          description: Lista dei percorsi
+          content: 
+            application/json:
+              schema:
+                type: array
+                items : 
+                  $ref: "#/components/schemas/Percorso"
+
+
+  
+
+
+
+components: 
+  schemas:
+    Gruppo:
+      type: object
+      required: 
+        - id
+        - nome
+        - idPercorso
+        - esperienza
+        - data
+      properties:
+        self:
+          type: string
+          description: "Link al gruppo"
+        id: 
+          type: string
+          description: "Id del gruppo"
+        nome:
+          type: string
+          description: "Nome del gruppo"
+        idPercorso:
+          type: string
+          description: "Id del percorso associato al gruppo"
+        esperienza:
+          type: string
+          enum : [neofita, medio, esperto]
+          description: "Livello di esperienza consigliato a chi partecipa"
+        data:
+          type: string
+          format: date-time
+          description: "Data in cui si effettura l'hike"
+
+    Percorso:
+      type: object
+      required:
+        - id
+        - nome
+        - difficolta
+        - lunghezzaKm
+      properties:
+        self:
+          type: string
+          description: Link al percorso
+        id:
+          type: string
+          description: Id unico del percorso
+        nome:
+          type: string
+          description: Nome del percorso
+        lunghezzaKm:
+          type: number
+          format: float
+          description: Lunghezza complessiva in chilometri
+        difficolta: 
+          type: string
+          enum: [facile, medio, difficile]
+          description: Livello di difficolta del percorso
+        
+       
