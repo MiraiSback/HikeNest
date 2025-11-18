@@ -62,8 +62,8 @@
     will-change: transform, opacity; /*Questa roba serve perché l'animazione laggava*/ /* unito a quello della classe sotto per fare si che compaia prima la scritta e poi il logo*/
   }
   .logo-on-home {
-    align-self: center;
     width: 40%;
+    align-self: center;
     margin-top: 5vh;
     animation: fadeInSlideUp 0.6s ease-out 0.4s backwards;
     will-change: transform, opacity;

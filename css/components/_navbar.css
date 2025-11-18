@@ -23,7 +23,16 @@
     width: 100%;
     transition: none;
   }
-
+  .navbar a {
+    flex-grow: 1;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 1vw;
+    text-decoration: none;
+    position: relative;
+    font-size: 1rem; /* Mi è stato detto di usare rem, perché si basa sulla grandezza del font del browser */
+  }
   .menu-toggle-container {
     display: none;
   }
@@ -41,17 +50,6 @@
 
   .navbar img:hover {
     cursor: pointer;
-  }
-
-  .navbar a {
-    flex-grow: 1;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 1vw;
-    text-decoration: none;
-    position: relative;
-    font-size: 1rem; /* Mi è stato detto di usare rem, perché si basa sulla grandezza del font del browser */
   }
 
   .navbar a::after {
@@ -100,20 +98,78 @@
 @media only screen and (max-width: 768px) {
   .navbar {
     display: flex;
-    height: 9vh;
+    height: 9dvh;
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
   }
   .navbar-content {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%; /* Larghezza del menu */
+    height: 100dvh;
+    
+    background-color: var(--colore-grigio-nebbia);
+    padding: 2rem 1rem;
+    z-index: 1000;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+
+    transform: translateX(100%);
+    
+    transition: transform 0.3s ease-in-out;
+    visibility: hidden;
   }
+
+  .navbar-content.open {
+        visibility: visible;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out, visibility 0s linear 0s;
+  }
+
   .navbar img {
     object-fit: contain;
     height: 3rem;
   }
-
-  .menu-icon{
+  .link-group {
+    gap: 5dvh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+  }
+  .link-group a{
+    align-self:center;
+    width: 100%;
+    padding: 1rem 0;
+    text-decoration: none;
+    color: var(--colore-scuro);
+  }
+  .btn-group {
+    margin-top: auto;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-group button{
+    width: 100%;
+    height: 2.5rem; /*Mi è stato inoltre detto che l'altezza di solito non viene settata con vw ma con rem */
+    cursor: pointer;
+    border-radius: clamp(
+      5px,
+      0.5vw,
+      8px
+    ); /* Anche il radius può essere bloccato */
+    padding: 0 1rem;
+    margin: 0.5vw;
+    font-size: 0.9rem;
+    border: 2px solid var(--colore-scuro);
+    color: var(--colore-scuro);
+  }
+  .menu-icon {
     display: flex;
     flex-direction: column;
     cursor: pointer;
