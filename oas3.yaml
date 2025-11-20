@@ -130,8 +130,28 @@ paths:
                 items : 
                   $ref: "#/components/schemas/Percorso"
 
-
-  
+  /join:
+    post: 
+      summary: Aggiunta di un utente ad un gruppo
+      description: Un utente viene aggiunto ad un gruppo già esistente, inviando la sua mail
+      requestBody: 
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - mail
+                - idGruppo
+              properties: 
+                  mail:
+                    type: string
+                    description: Mail dell'utente da aggiungere al gruppo
+                  idGruppo:
+                    type: string
+                    description: ID del gruppo da joinare
+      responses: 
+        '201':  
+          description: Utente aggiunto
 
 
 

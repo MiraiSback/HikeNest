@@ -284,6 +284,52 @@
           }
         }
       }
+    },
+    "/join:post": {
+      "operationId": "/join:post",
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "fuzzing": true,
+          "requests": [
+            {
+              "$ref": "#/operations/~1join:post/request",
+              "fuzzing": true
+            }
+          ]
+        }
+      ],
+      "request": {
+        "operationId": "/join:post",
+        "request": {
+          "type": "42c",
+          "details": {
+            "url": "{{host}}/join",
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "requestBody": {
+              "mode": "json",
+              "json": {
+                "idGruppo": "kujcpgmlttnxqzhbwnvpficzgsxjhxka",
+                "mail": "avxozpmffyxujayivpttspxrshumznub"
+              }
+            }
+          }
+        },
+        "defaultResponse": "201",
+        "responses": {
+          "201": {
+            "expectations": {
+              "httpStatus": 201
+            }
+          }
+        }
+      }
     }
   },
   "authenticationDetails": []
