@@ -241,6 +241,49 @@
           }
         }
       }
+    },
+    "/percorsi:get": {
+      "operationId": "/percorsi:get",
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "fuzzing": true,
+          "requests": [
+            {
+              "$ref": "#/operations/~1percorsi:get/request",
+              "fuzzing": true
+            }
+          ]
+        }
+      ],
+      "request": {
+        "operationId": "/percorsi:get",
+        "request": {
+          "type": "42c",
+          "details": {
+            "url": "{{host}}/percorsi",
+            "method": "GET",
+            "queries": [
+              {
+                "key": "minKm",
+                "value": 2.8872256443714147e+38
+              },
+              {
+                "key": "maxKm",
+                "value": 8.821598116100576e+37
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          }
+        }
+      }
     }
   },
   "authenticationDetails": []
