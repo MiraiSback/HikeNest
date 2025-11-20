@@ -117,25 +117,14 @@
     },
     "/gruppi:get": {
       "operationId": "/gruppi:get",
-      "scenarios": [
-        {
-          "key": "happy.path",
-          "fuzzing": true,
-          "requests": [
-            {
-              "$ref": "#/operations/~1gruppi:get/request",
-              "fuzzing": true
-            }
-          ]
-        }
-      ],
       "request": {
         "operationId": "/gruppi:get",
         "request": {
           "type": "42c",
           "details": {
-            "url": "{{host}}/gruppi",
-            "method": "GET"
+            "operationId": "/gruppi:get",
+            "method": "GET",
+            "url": "{{host}}/gruppi"
           }
         },
         "defaultResponse": "200",
@@ -146,29 +135,30 @@
             }
           }
         }
-      }
-    },
-    "/gruppi:post": {
-      "operationId": "/gruppi:post",
+      },
       "scenarios": [
         {
           "key": "happy.path",
-          "fuzzing": true,
           "requests": [
             {
-              "$ref": "#/operations/~1gruppi:post/request",
-              "fuzzing": true
+              "fuzzing": true,
+              "$ref": "#/operations/~1gruppi:get/request"
             }
-          ]
+          ],
+          "fuzzing": true
         }
-      ],
+      ]
+    },
+    "/gruppi:post": {
+      "operationId": "/gruppi:post",
       "request": {
         "operationId": "/gruppi:post",
         "request": {
           "type": "42c",
           "details": {
-            "url": "{{host}}/gruppi",
+            "operationId": "/gruppi:post",
             "method": "POST",
+            "url": "{{host}}/gruppi",
             "headers": [
               {
                 "key": "Content-Type",
@@ -180,7 +170,6 @@
               "json": {
                 "data": "ahwpgyjqszbwgqmoibqoluxvjzunfypv",
                 "esperienza": "esperto",
-                "id": "rrosrnthkmsoifluigzbnbalhdflgyun",
                 "idPercorso": "lqdelbfsrxelhtetemkxzvkiiuzpqijr",
                 "nome": "ajdpqttthyohsegojcibbcghciceewsv",
                 "self": "ogniqhlphdfutzyoakhkpzzbnoifyllw"
@@ -196,29 +185,30 @@
             }
           }
         }
-      }
-    },
-    "/gruppi/{IDGruppo}:get": {
-      "operationId": "/gruppi/{IDGruppo}:get",
+      },
       "scenarios": [
         {
           "key": "happy.path",
-          "fuzzing": true,
           "requests": [
             {
-              "$ref": "#/operations/~1gruppi~1{IDGruppo}:get/request",
-              "fuzzing": true
+              "fuzzing": true,
+              "$ref": "#/operations/~1gruppi:post/request"
             }
-          ]
+          ],
+          "fuzzing": true
         }
-      ],
+      ]
+    },
+    "/gruppi/{IDGruppo}:get": {
+      "operationId": "/gruppi/{IDGruppo}:get",
       "request": {
         "operationId": "/gruppi/{IDGruppo}:get",
         "request": {
           "type": "42c",
           "details": {
-            "url": "{{host}}/gruppi/{IDGruppo}",
+            "operationId": "/gruppi/{IDGruppo}:get",
             "method": "GET",
+            "url": "{{host}}/gruppi/{IDGruppo}",
             "paths": [
               {
                 "key": "IDGruppo",
@@ -240,29 +230,30 @@
             }
           }
         }
-      }
-    },
-    "/percorsi:get": {
-      "operationId": "/percorsi:get",
+      },
       "scenarios": [
         {
           "key": "happy.path",
-          "fuzzing": true,
           "requests": [
             {
-              "$ref": "#/operations/~1percorsi:get/request",
-              "fuzzing": true
+              "fuzzing": true,
+              "$ref": "#/operations/~1gruppi~1{IDGruppo}:get/request"
             }
-          ]
+          ],
+          "fuzzing": true
         }
-      ],
+      ]
+    },
+    "/percorsi:get": {
+      "operationId": "/percorsi:get",
       "request": {
         "operationId": "/percorsi:get",
         "request": {
           "type": "42c",
           "details": {
-            "url": "{{host}}/percorsi",
+            "operationId": "/percorsi:get",
             "method": "GET",
+            "url": "{{host}}/percorsi",
             "queries": [
               {
                 "key": "minKm",
@@ -283,29 +274,30 @@
             }
           }
         }
-      }
-    },
-    "/join:post": {
-      "operationId": "/join:post",
+      },
       "scenarios": [
         {
           "key": "happy.path",
-          "fuzzing": true,
           "requests": [
             {
-              "$ref": "#/operations/~1join:post/request",
-              "fuzzing": true
+              "fuzzing": true,
+              "$ref": "#/operations/~1percorsi:get/request"
             }
-          ]
+          ],
+          "fuzzing": true
         }
-      ],
+      ]
+    },
+    "/join:post": {
+      "operationId": "/join:post",
       "request": {
         "operationId": "/join:post",
         "request": {
           "type": "42c",
           "details": {
-            "url": "{{host}}/join",
+            "operationId": "/join:post",
             "method": "POST",
+            "url": "{{host}}/join",
             "headers": [
               {
                 "key": "Content-Type",
@@ -329,7 +321,19 @@
             }
           }
         }
-      }
+      },
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "requests": [
+            {
+              "fuzzing": true,
+              "$ref": "#/operations/~1join:post/request"
+            }
+          ],
+          "fuzzing": true
+        }
+      ]
     }
   },
   "authenticationDetails": []

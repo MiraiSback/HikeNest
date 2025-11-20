@@ -68,7 +68,7 @@ paths:
         content:
           application/json:
             schema: 
-              $ref: "#/components/schemas/Gruppo"
+              $ref: "#/components/schemas/GruppoCreate"
       responses: 
         '201':
           description: Gruppo creato
@@ -153,8 +153,6 @@ paths:
         '201':  
           description: Utente aggiunto
 
-
-
 components: 
   schemas:
     Gruppo:
@@ -187,6 +185,27 @@ components:
           format: date-time
           description: "Data in cui si effettura l'hike"
 
+
+    #usa questo schema quando invii un gruppo in post per crearlo e non hai ancora un id
+    GruppoCreate:
+      type: object
+      required:
+        - nome
+        - idPercorso
+        - esperienza
+        - data
+      properties:
+        nome:
+          type: string
+        idPercorso:
+          type: string
+        esperienza:
+          type: string
+          enum: [neofita, medio, esperto]
+        data:
+          type: string
+          format: date-time
+
     Percorso:
       type: object
       required:
@@ -212,5 +231,3 @@ components:
           type: string
           enum: [facile, medio, difficile]
           description: Livello di difficolta del percorso
-        
-       
