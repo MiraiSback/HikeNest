@@ -48,6 +48,47 @@ paths:
                 password: 
                   type: string
                   description: Password dell'utente
+  /register:
+    post:
+      summary: Crea un utente con email, username e password
+      description: È possibile creare un utente inviando username, email e password al sistema
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - mail
+                - password 
+                - username
+              properties:
+                mail:
+                  type: string
+                  format: email
+                  description: Indirizzo email dell'utente
+                password:
+                  type: string
+                  description: Password dell'utente
+                username: 
+                  type: string
+                  description: Username scelto dall'utente
+
+      responses:
+        '201':
+          description: Utente creato!
+          content:  
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link alla nuova risorsa
+        '400': 
+          description: Errore nella creazione dell'utente
+
+          
   /gruppi:
     get:
       summary: Lista dei gruppi
@@ -68,7 +109,7 @@ paths:
         content:
           application/json:
             schema: 
-              $ref: "#/components/schemas/GruppoCreate"
+              $ref: "#/components/schemas/Gruppo"
       responses: 
         '201':
           description: Gruppo creato
@@ -159,7 +200,6 @@ components:
     Gruppo:
       type: object
       required: 
-        - id
         - nome
         - idPercorso
         - esperienza
@@ -168,9 +208,6 @@ components:
         self:
           type: string
           description: "Link al gruppo"
-        id: 
-          type: string
-          description: "Id del gruppo"
         nome:
           type: string
           description: "Nome del gruppo"
@@ -187,31 +224,10 @@ components:
           description: "Data in cui si effettura l'hike"
 
 
-    #usa questo schema quando invii un gruppo in post per crearlo e non hai ancora un id
-    GruppoCreate:
-      type: object
-      required:
-        - nome
-        - idPercorso
-        - esperienza
-        - data
-      properties:
-        nome:
-          type: string
-        idPercorso:
-          type: string
-        esperienza:
-          type: string
-          enum: [neofita, medio, esperto]
-        data:
-          type: string
-          format: date-time
-
   #schema unico per i percorsi, usato solo in get
     Percorso:
       type: object
       required:
-        - id
         - nome
         - difficolta
         - lunghezzaKm
@@ -219,9 +235,6 @@ components:
         self:
           type: string
           description: Link al percorso
-        id:
-          type: string
-          description: Id unico del percorso
         nome:
           type: string
           description: Nome del percorso
@@ -233,3 +246,4 @@ components:
           type: string
           enum: [facile, medio, difficile]
           description: Livello di difficolta del percorso
+    
