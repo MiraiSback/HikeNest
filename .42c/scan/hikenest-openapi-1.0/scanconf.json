@@ -334,6 +334,97 @@
           "fuzzing": true
         }
       ]
+    },
+    "/register:post": {
+      "operationId": "/register:post",
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "fuzzing": true,
+          "requests": [
+            {
+              "$ref": "#/operations/~1register:post/request",
+              "fuzzing": true
+            }
+          ]
+        }
+      ],
+      "request": {
+        "operationId": "/register:post",
+        "request": {
+          "type": "42c",
+          "details": {
+            "url": "{{host}}/register",
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "requestBody": {
+              "mode": "json",
+              "json": {
+                "mail": "nbovtqkqgcsivssbxwbfsnkqdrrzfdsw",
+                "password": "xhmerargatmianghlcretczuwsuryysf",
+                "username": "wdmmxvsgafcgyslpxbftutihgfqqzcdh"
+              }
+            }
+          }
+        },
+        "defaultResponse": "201",
+        "responses": {
+          "201": {
+            "expectations": {
+              "httpStatus": 201
+            }
+          },
+          "400": {
+            "expectations": {
+              "httpStatus": 400
+            }
+          }
+        }
+      }
+    },
+    "/percorsi/{idPercorso}/recensioni:get": {
+      "operationId": "/percorsi/{idPercorso}/recensioni:get",
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "fuzzing": true,
+          "requests": [
+            {
+              "$ref": "#/operations/~1percorsi~1{idPercorso}~1recensioni:get/request",
+              "fuzzing": true
+            }
+          ]
+        }
+      ],
+      "request": {
+        "operationId": "/percorsi/{idPercorso}/recensioni:get",
+        "request": {
+          "type": "42c",
+          "details": {
+            "url": "{{host}}/percorsi/{idPercorso}/recensioni",
+            "method": "GET",
+            "paths": [
+              {
+                "key": "idPercorso",
+                "value": "dfntiedmqeiqplebuwwhqqsvdfzrpnzt"
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          }
+        }
+      }
     }
   },
   "authenticationDetails": []

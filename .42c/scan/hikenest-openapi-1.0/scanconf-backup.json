@@ -335,34 +335,53 @@
         }
       ]
     },
-    "/pizza:get": {
-      "operationId": "/pizza:get",
+    "/register:post": {
+      "operationId": "/register:post",
       "scenarios": [
         {
           "key": "happy.path",
           "fuzzing": true,
           "requests": [
             {
-              "$ref": "#/operations/~1pizza:get/request",
+              "$ref": "#/operations/~1register:post/request",
               "fuzzing": true
             }
           ]
         }
       ],
       "request": {
-        "operationId": "/pizza:get",
+        "operationId": "/register:post",
         "request": {
           "type": "42c",
           "details": {
-            "url": "{{host}}/pizza",
-            "method": "GET"
+            "url": "{{host}}/register",
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "requestBody": {
+              "mode": "json",
+              "json": {
+                "mail": "nbovtqkqgcsivssbxwbfsnkqdrrzfdsw",
+                "password": "xhmerargatmianghlcretczuwsuryysf",
+                "username": "wdmmxvsgafcgyslpxbftutihgfqqzcdh"
+              }
+            }
           }
         },
-        "defaultResponse": "200",
+        "defaultResponse": "201",
         "responses": {
-          "200": {
+          "201": {
             "expectations": {
-              "httpStatus": 200
+              "httpStatus": 201
+            }
+          },
+          "400": {
+            "expectations": {
+              "httpStatus": 400
             }
           }
         }

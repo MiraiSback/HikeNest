@@ -53,6 +53,7 @@ paths:
       summary: Crea un utente con email, username e password
       description: È possibile creare un utente inviando username, email e password al sistema
       requestBody:
+        description: Nel body devono essere presenti username, mail e password
         required: true
         content:
           application/json:
@@ -106,6 +107,7 @@ paths:
       summary: Crea un nuovo gruppo
       description: Creazione di un nuovo gruppo inviando i dati necessari
       requestBody:
+        description: Nella richiesta vanno inseriti tutti i dati relativi al gruppo
         content:
           application/json:
             schema: 
@@ -118,6 +120,10 @@ paths:
               schema:
                 type: string
               description: Link al nuovo gruppo
+        '401': 
+          description: Utente non autenticato
+        '400': 
+          description: Dati invalidi
       
     
     
@@ -141,6 +147,8 @@ paths:
                 $ref: "#/components/schemas/Gruppo" 
         '404':
           description: Gruppo non trovato
+        '401': 
+          description: Utente non autenticato
   
   /percorsi:
     get:
@@ -170,6 +178,103 @@ paths:
                 type: array
                 items : 
                   $ref: "#/components/schemas/Percorso"
+        '401': 
+          description: Utente non autenticato
+
+  /percorsi/{idPercorso}/recensioni:
+    get:
+      summary: Lista delle recensioni di un percorso
+      description: Restituisce una lista contenente tutte le recensioni di un singolo percorso
+      parameters:
+      - in: path
+        name: idPercorso
+        required: true
+        schema:
+          type: string
+          description: Id del percorso dal quale cercare le recensioni
+      responses:
+        '200':
+          description: Lista delle recensioni trovate
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recensione'
+        '401': 
+          description: Utente non autenticato
+    post:
+      summary: Crea una nuova recensione
+      description: Permette ad un utente di creare una nuova recensione 
+      parameters:
+      - in: path
+        name: idPercorso
+        required: true
+        schema:
+          type: string
+          description: Id del percorso del quale inserire una recensione
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Recensione'
+      responses:
+        '201':
+          description: Recensione creata
+        '400':
+          description: Dati forniti non validi
+        '401': 
+          description: Utente non autenticato
+
+  /percorsi/{idPercorso}/segnalazioni:
+    get:
+      summary: Lista delle segnalazioni relative ad un percorso
+      description: Restituisce la lista di tutte le segnalazioni fornite rispetto ad un percorso
+      parameters:
+      - in: path
+        name: idPercorso
+        required: true
+        schema:
+          type: string
+          description: Id del percorso dal quale cercare le segnalazioni
+      responses:
+        '200':
+          description: Lista delle segnalazioni trovate
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: '#/components/schemas/Segnalazione'
+        '401': 
+          description: Utente non autenticato
+    post:
+      summary: Inviare una nuova segnalazione
+      description: Permette ad un utente di inviare una segnalazione relativa ad una problematica su un percorso
+      parameters:
+      - in: path
+        name: idPercorso
+        required: true
+        schema:
+          type: string
+          description: Id del percorso menzionato nella segnalazione
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Segnalazione'
+      responses:
+        '201':
+          description: Segnalazione registrata
+        '400':
+          description: Dati forniti non validi
+        '401': 
+          description: Utente non autenticato
+
+        
+
 
   /join:
     post: 
@@ -193,10 +298,18 @@ paths:
       responses: 
         '201':  
           description: Utente aggiunto
+        '400':
+          description: Impossibile aggregarsi al gruppo, azione fallita
+        '401': 
+          description: Utente non autenticato
+
+  
+
+  
 
 components: 
   schemas:
-  #usa questo schema per restituire uno/p gruppi quando l'utente li richiede
+  #usa questo schema per restituire uno/più gruppi quando l'utente li richiede
     Gruppo:
       type: object
       required: 
@@ -224,7 +337,7 @@ components:
           description: "Data in cui si effettura l'hike"
 
 
-  #schema unico per i percorsi, usato solo in get
+  #schema unico per i percorsi
     Percorso:
       type: object
       required:
@@ -246,4 +359,49 @@ components:
           type: string
           enum: [facile, medio, difficile]
           description: Livello di difficolta del percorso
+
+    Recensione:
+      type: object
+      required: 
+        - idPercorso
+        - idUtente
+        - testo
+        - valutazione
+      properties:
+        self:
+          type: string
+          description: Link alla recensione
+        idPercorso:
+          type: string
+          description: Id del percorso a cui è associata la recensione
+        idUtente:
+          type: string
+          description: Id dell'utente che ha postato la recensione
+        testo: 
+          type: string
+          description: Testo facente parte della recensione
+        valutazione: 
+          type: number
+          minimum: 1
+          maximum: 5
+          description: Valore numerico lasciato dall'utente in valutazione al percorso
     
+    Segnalazione:
+      type: object
+      required: 
+        - idPercorso
+        - idUtente
+        - testo
+      properties:
+        self:
+          type: string
+          description: Link alla segnalazione
+        idPercorso:
+          type: string
+          description: Id del percorso associato alla segnalazione
+        idUtente:
+          type: string
+          description: Id dell'utente che ha aperto la segnalazione
+        testo:
+          type: string
+          description: Descrizione associata alla segnalazione
