@@ -1,17 +1,16 @@
 /* 1. Base e Variabili (Sempre per primi) */
-@import url('base/_variables.css');
-@import url('base/_base.css');
-@import url('base/_animations.css');
+@import url("base/_variables.css");
+@import url("base/_base.css");
+@import url("base/_animations.css");
 
 /* 2. Componenti Riutilizzabili */
-@import url('components/_navbar.css');
-@import url('components/_buttons.css');
-@import url('components/_forms.css');
-@import url('components/_cards.css');
+@import url("components/_navbar.css");
+@import url("components/_forms.css");
+@import url("components/_cards.css");
 
 /* 3. Stili Specifici delle Pagine (Per ultimi) */
-@import url('pages/_home.css');
-@import url('pages/_about.css');
-@import url('pages/_map.css');
-@import url('pages/_group.css');
+@import url("pages/_home.css");
+@import url("pages/_about.css");
+@import url("pages/_map.css");
+@import url("pages/_group.css");
 /* ...altre pagine... */
