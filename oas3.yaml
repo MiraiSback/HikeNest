@@ -89,7 +89,27 @@ paths:
         '400': 
           description: Errore nella creazione dell'utente
 
-          
+  /utenti/{idUtente}:
+    get:
+      summary: Profilo di un utente
+      description: Mostra la pagina del profilo di un utente, mostrando username e bio
+      parameters:
+        - in : path
+          name: idUtente
+          required: true
+          schema: 
+            type: string
+          description: ID dell'utente del quale visualizzare il profilo
+      responses:
+        '200':
+          description: Profilo dell'utente trovato
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utente'
+        '404':  
+          description: Utente non trovato
+                
   /gruppi:
     get:
       summary: Lista dei gruppi
@@ -275,7 +295,7 @@ paths:
 
         
 
-
+  #da spostare sotto gruppi/{idGruppo}/join/{idUtente} in post
   /join:
     post: 
       summary: Aggiunta di un utente ad un gruppo
@@ -405,3 +425,23 @@ components:
         testo:
           type: string
           description: Descrizione associata alla segnalazione
+    
+    Utente: 
+      type: object
+      required:
+        - mail
+        - username
+        - bio
+      properties:
+        self: 
+          type: string
+          description: Link all'utente
+        mail:
+          type: string
+          description: E-mail dell'utente
+        username:
+          type: string
+          description: Username dell'utente
+        bio:
+          type: string
+          description: Biografia impostata dall'utente sul suo profilo
