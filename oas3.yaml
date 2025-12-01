@@ -11,7 +11,7 @@ servers:
   - url: http://questositononesiste.com
     description: da cambiare in fase di deploy
 paths: 
-  /authentication:
+  /autenticazione:
     post:
       summary: Autenticazione di un utente
       description: Autentica uno user creando un token di sessione JWT
@@ -48,7 +48,7 @@ paths:
                 password: 
                   type: string
                   description: Password dell'utente
-  /register:
+  /registrazione:
     post:
       summary: Crea un utente con email, username e password
       description: È possibile creare un utente inviando username, email e password al sistema
@@ -295,11 +295,17 @@ paths:
 
         
 
-  #da spostare sotto gruppi/{idGruppo}/join/{idUtente} in post
-  /join:
+  /gruppi/{idGruppo}/persone:
     post: 
       summary: Aggiunta di un utente ad un gruppo
       description: Un utente viene aggiunto ad un gruppo già esistente, inviando la sua mail
+      parameters:
+      - in: path
+        name: idGruppo
+        required: true
+        schema:
+          type: string
+          description: Id del gruppo al quale unirsi
       requestBody: 
         content:
           application/json:
@@ -307,14 +313,10 @@ paths:
               type: object
               required:
                 - mail
-                - idGruppo
               properties: 
                   mail:
                     type: string
                     description: Mail dell'utente da aggiungere al gruppo
-                  idGruppo:
-                    type: string
-                    description: ID del gruppo da joinare
       responses: 
         '201':  
           description: Utente aggiunto
@@ -322,6 +324,21 @@ paths:
           description: Impossibile aggregarsi al gruppo, azione fallita
         '401': 
           description: Utente non autenticato
+    get:
+      summary: Numero di persone in un gruppo
+      description: Ottieni il numero di persone che si sono aggiunte ad un gruppo
+      parameters:
+      - in: path
+        name: idGruppo
+        required: true
+        schema:
+          type: string
+          description: Id del gruppo del quale richidere le informazioni sugli utenti
+      responses: 
+        '200': 
+          description: Hai ottenuto i dati richiesti
+        '404':  
+          description: Gruppo  non trovato
 
   
 
