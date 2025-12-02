@@ -298,7 +298,7 @@ paths:
   /gruppi/{idGruppo}/persone:
     post: 
       summary: Aggiunta di un utente ad un gruppo
-      description: Un utente viene aggiunto ad un gruppo già esistente, inviando la sua mail
+      description: Un utente viene aggiunto ad un gruppo già esistente
       parameters:
       - in: path
         name: idGruppo
@@ -312,11 +312,11 @@ paths:
             schema:
               type: object
               required:
-                - mail
+                - idUtente
               properties: 
-                  mail:
+                  idUtente:
                     type: string
-                    description: Mail dell'utente da aggiungere al gruppo
+                    description: ID dell'utente da aggiungere al gruppo
       responses: 
         '201':  
           description: Utente aggiunto
@@ -354,6 +354,7 @@ components:
         - idPercorso
         - esperienza
         - data
+        - utenti
       properties:
         self:
           type: string
@@ -372,6 +373,11 @@ components:
           type: string
           format: date-time
           description: "Data in cui si effettura l'hike"
+        utenti:
+          type: array
+          items:
+            type: string
+          description: Array di tutti gli utenti che partecipano al gruppo
 
 
   #schema unico per i percorsi
