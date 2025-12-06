@@ -4,5 +4,6 @@ const { Schema } = mongoose;
 export default mongoose.model('Percorso', new Schema({ 
     nome: String,
     difficolta: String,
-    lunghezzaKm: Number
+    lunghezzaKm: Number,
+    localitaPartenza: String
 }));
