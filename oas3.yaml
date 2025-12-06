@@ -6,7 +6,7 @@ info:
   license:
     name: MIT
 servers:
-  - url: http://localhost:8080/api/v1
+  - url: http://localhost:8080/api
     description: Localhost
   - url: http://questositononesiste.com
     description: da cambiare in fase di deploy
@@ -93,6 +93,8 @@ paths:
     get:
       summary: Profilo di un utente
       description: Mostra la pagina del profilo di un utente, mostrando username e bio
+      security:
+        - TokenHeader: []
       parameters:
         - in : path
           name: idUtente
@@ -114,6 +116,8 @@ paths:
     get:
       summary: Lista dei gruppi
       description: Ottieni la lista di tutti i gruppi, per ottenerne uno solo usa /gruppi/{IDgruppo}
+      security:
+        - TokenHeader: []
       responses:
         '200':
           description: Lista dei gruppi
@@ -126,12 +130,15 @@ paths:
     post:
       summary: Crea un nuovo gruppo
       description: Creazione di un nuovo gruppo inviando i dati necessari
+      security:
+        - TokenHeader: []
       requestBody:
         description: Nella richiesta vanno inseriti tutti i dati relativi al gruppo
         content:
           application/json:
             schema: 
               $ref: "#/components/schemas/Gruppo"
+              #l'id dell'utente verrà preso dal jwt lato server
       responses: 
         '201':
           description: Gruppo creato
@@ -151,6 +158,8 @@ paths:
     get:
       summary: Pagina di un gruppo
       description: Ottieni informazioni riguardo un singolo gruppo
+      security:
+        - TokenHeader: []
       parameters:
         - in : path
           name: IDGruppo
@@ -174,6 +183,8 @@ paths:
     get:
       summary: Lista di tutti i percorsi
       description: Ottieni la lista completa di tutti i percorsi, eventualmente filtrati per lunghezza
+      security:
+        - TokenHeader: []
       parameters:
       - in: query #usiamo query per fare /percorsi?minKm=1&maxKm=100 invece che path che consente un solo param
         name: minKm
@@ -189,6 +200,25 @@ paths:
           format: float
         required: false
         description: Lunghezza massima del percorso in km
+      - in: query
+        name: difficolta
+        schema:
+          type: string
+          enum: [facile, medio, difficile]
+        required: false
+        description: Difficoltà del percorso da cercare
+      - in: query
+        name: nome
+        schema: 
+          type: string
+        required: false
+        description: Nome totale o parziale del percorso da cercare
+      - in: query
+        name: localita
+        schema: 
+          type: string
+        required: false
+        description: Località del percorso da cercare      
       responses:
         '200':
           description: Lista dei percorsi
@@ -205,6 +235,8 @@ paths:
     get:
       summary: Lista delle recensioni di un percorso
       description: Restituisce una lista contenente tutte le recensioni di un singolo percorso
+      security:
+        - TokenHeader: []
       parameters:
       - in: path
         name: idPercorso
@@ -226,6 +258,8 @@ paths:
     post:
       summary: Crea una nuova recensione
       description: Permette ad un utente di creare una nuova recensione 
+      security:
+        - TokenHeader: []
       parameters:
       - in: path
         name: idPercorso
@@ -251,6 +285,8 @@ paths:
     get:
       summary: Lista delle segnalazioni relative ad un percorso
       description: Restituisce la lista di tutte le segnalazioni fornite rispetto ad un percorso
+      security:
+        - TokenHeader: []
       parameters:
       - in: path
         name: idPercorso
@@ -272,6 +308,8 @@ paths:
     post:
       summary: Inviare una nuova segnalazione
       description: Permette ad un utente di inviare una segnalazione relativa ad una problematica su un percorso
+      security:
+        - TokenHeader: []
       parameters:
       - in: path
         name: idPercorso
@@ -294,11 +332,13 @@ paths:
           description: Utente non autenticato
 
         
-
+  #ID DELL'UTENTE va preso dal jwt
   /gruppi/{idGruppo}/persone:
     post: 
       summary: Aggiunta di un utente ad un gruppo
       description: Un utente viene aggiunto ad un gruppo già esistente
+      security:
+        - TokenHeader: []
       parameters:
       - in: path
         name: idGruppo
@@ -306,17 +346,6 @@ paths:
         schema:
           type: string
           description: Id del gruppo al quale unirsi
-      requestBody: 
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - idUtente
-              properties: 
-                  idUtente:
-                    type: string
-                    description: ID dell'utente da aggiungere al gruppo
       responses: 
         '201':  
           description: Utente aggiunto
@@ -327,6 +356,8 @@ paths:
     get:
       summary: Numero di persone in un gruppo
       description: Ottieni il numero di persone che si sono aggiunte ad un gruppo
+      security:
+        - TokenHeader: []
       parameters:
       - in: path
         name: idGruppo
@@ -339,14 +370,44 @@ paths:
           description: Hai ottenuto i dati richiesti
         '404':  
           description: Gruppo  non trovato
+  
+  #questa è una richiesta fatta da un utente loggato
+  #invia il suo token e da quello il server ottiene l'id e risponde con i gruppi
+  #cosi viene rispettata la privacy
+  /gruppi/gruppiUtente:
+    get:
+      summary: Gruppi a cui un utente appartiene
+      description: Elenco di tutti i gruppi a cui un utente appartiene
+      security:
+        - TokenHeader: []
+      responses:
+        '200':
+          description: Ottenuta la lista di gruppi di un utente
+        '401':
+          description: Token mancante o non valido
+
+      
+
 
   
 
   
 
 components: 
+
+  securitySchemes:
+    
+    TokenHeader: 
+      description: Token da inserire come header per usufruire delle chiamate api che richiedono login
+      type: apiKey
+      in: header
+      name: accessToken
+
+
   schemas:
   #usa questo schema per restituire uno/più gruppi quando l'utente li richiede
+  #idCreatore non è required perchè quando un utente crea il gruppo l'id è ottenuto dal suo jwt
+  #ma nelle richieste successive di info sul gruppo invierò idCreatore nel body
     Gruppo:
       type: object
       required: 
@@ -354,7 +415,7 @@ components:
         - idPercorso
         - esperienza
         - data
-        - utenti
+        - descrizione
       properties:
         self:
           type: string
@@ -378,6 +439,12 @@ components:
           items:
             type: string
           description: Array di tutti gli utenti che partecipano al gruppo
+        idCreatore:
+          type: string
+          description: Id dell'utente che ha creato il percorso
+        descrizione:
+          type: string
+          description: Descrizione definita al momento della creazione
 
 
   #schema unico per i percorsi
@@ -387,6 +454,7 @@ components:
         - nome
         - difficolta
         - lunghezzaKm
+        - localitaPartenza
       properties:
         self:
           type: string
@@ -402,21 +470,22 @@ components:
           type: string
           enum: [facile, medio, difficile]
           description: Livello di difficolta del percorso
+        localitaPartenza:
+          type: string
+          description: Località dalla quale parte il percorso
 
+  #idUtente non è required perchè quando viene creata una recensione l'id si prende dal jwt
+  #mentre quando vengono lette l'id utente è passato nel body
+  #idPercorso non è nello schema perchè è gia presente nell'url
     Recensione:
       type: object
       required: 
-        - idPercorso
-        - idUtente
         - testo
         - valutazione
       properties:
         self:
           type: string
           description: Link alla recensione
-        idPercorso:
-          type: string
-          description: Id del percorso a cui è associata la recensione
         idUtente:
           type: string
           description: Id dell'utente che ha postato la recensione
@@ -429,19 +498,16 @@ components:
           maximum: 5
           description: Valore numerico lasciato dall'utente in valutazione al percorso
     
+    #come per le recensioni, idUtente non è required
+    #idPercorso non è nello schema perchè è gia presente nell'url
     Segnalazione:
       type: object
       required: 
-        - idPercorso
-        - idUtente
         - testo
       properties:
         self:
           type: string
           description: Link alla segnalazione
-        idPercorso:
-          type: string
-          description: Id del percorso associato alla segnalazione
         idUtente:
           type: string
           description: Id dell'utente che ha aperto la segnalazione
