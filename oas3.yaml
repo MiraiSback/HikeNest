@@ -94,7 +94,7 @@ paths:
       summary: Profilo di un utente
       description: Mostra la pagina del profilo di un utente, mostrando username e bio
       security:
-        - TokenHeader: []
+        - BearerAuth: []
       parameters:
         - in : path
           name: idUtente
@@ -117,7 +117,7 @@ paths:
       summary: Lista dei gruppi
       description: Ottieni la lista di tutti i gruppi, per ottenerne uno solo usa /gruppi/{IDgruppo}
       security:
-        - TokenHeader: []
+        - BearerAuth: []
       responses:
         '200':
           description: Lista dei gruppi
@@ -131,7 +131,7 @@ paths:
       summary: Crea un nuovo gruppo
       description: Creazione di un nuovo gruppo inviando i dati necessari
       security:
-        - TokenHeader: []
+        - BearerAuth: []
       requestBody:
         description: Nella richiesta vanno inseriti tutti i dati relativi al gruppo
         content:
@@ -159,7 +159,7 @@ paths:
       summary: Pagina di un gruppo
       description: Ottieni informazioni riguardo un singolo gruppo
       security:
-        - TokenHeader: []
+        - BearerAuth: []
       parameters:
         - in : path
           name: IDGruppo
@@ -184,7 +184,7 @@ paths:
       summary: Lista di tutti i percorsi
       description: Ottieni la lista completa di tutti i percorsi, eventualmente filtrati per lunghezza
       security:
-        - TokenHeader: []
+        - BearerAuth: []
       parameters:
       - in: query #usiamo query per fare /percorsi?minKm=1&maxKm=100 invece che path che consente un solo param
         name: minKm
@@ -236,7 +236,7 @@ paths:
       summary: Lista delle recensioni di un percorso
       description: Restituisce una lista contenente tutte le recensioni di un singolo percorso
       security:
-        - TokenHeader: []
+        - BearerAuth: []
       parameters:
       - in: path
         name: idPercorso
@@ -259,7 +259,7 @@ paths:
       summary: Crea una nuova recensione
       description: Permette ad un utente di creare una nuova recensione 
       security:
-        - TokenHeader: []
+        - BearerAuth: []
       parameters:
       - in: path
         name: idPercorso
@@ -286,7 +286,7 @@ paths:
       summary: Lista delle segnalazioni relative ad un percorso
       description: Restituisce la lista di tutte le segnalazioni fornite rispetto ad un percorso
       security:
-        - TokenHeader: []
+        - BearerAuth: []
       parameters:
       - in: path
         name: idPercorso
@@ -309,7 +309,7 @@ paths:
       summary: Inviare una nuova segnalazione
       description: Permette ad un utente di inviare una segnalazione relativa ad una problematica su un percorso
       security:
-        - TokenHeader: []
+        - BearerAuth: []
       parameters:
       - in: path
         name: idPercorso
@@ -338,7 +338,7 @@ paths:
       summary: Aggiunta di un utente ad un gruppo
       description: Un utente viene aggiunto ad un gruppo già esistente
       security:
-        - TokenHeader: []
+        - BearerAuth: []
       parameters:
       - in: path
         name: idGruppo
@@ -357,7 +357,7 @@ paths:
       summary: Numero di persone in un gruppo
       description: Ottieni il numero di persone che si sono aggiunte ad un gruppo
       security:
-        - TokenHeader: []
+        - BearerAuth: []
       parameters:
       - in: path
         name: idGruppo
@@ -379,7 +379,7 @@ paths:
       summary: Gruppi a cui un utente appartiene
       description: Elenco di tutti i gruppi a cui un utente appartiene
       security:
-        - TokenHeader: []
+        - BearerAuth: []
       responses:
         '200':
           description: Ottenuta la lista di gruppi di un utente
@@ -396,12 +396,12 @@ paths:
 components: 
 
   securitySchemes:
-    
-    TokenHeader: 
-      description: Token da inserire come header per usufruire delle chiamate api che richiedono login
-      type: apiKey
-      in: header
-      name: accessToken
+    #formato standard per inviare e ricevere token
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Portatore del token JWT, in formato  Bearer ${token}
 
 
   schemas:
