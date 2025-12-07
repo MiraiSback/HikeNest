@@ -51,7 +51,7 @@ router.post('/', async function(req, res){
                 bio: ' '
             });
             await user.save();
-            //tolto exec perchè dava errori
+            //tolto exec() perchè dava errori
 
         }
     }
@@ -98,3 +98,5 @@ router.post('/', async function(req, res){
 
    
 });
+
+export default router;
