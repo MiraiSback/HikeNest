@@ -373,6 +373,14 @@ paths:
       responses: 
         '200': 
           description: Hai ottenuto i dati richiesti
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  numeroUtenti:
+                    type: integer
+                    description: Numero di utenti nel gruppo
         '404':  
           description: Gruppo  non trovato
   
@@ -388,6 +396,12 @@ paths:
       responses:
         '200':
           description: Ottenuta la lista di gruppi di un utente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:  
+                  $ref: '#/components/schemas/Gruppo'
         '401':
           description: Token mancante o non valido
 
