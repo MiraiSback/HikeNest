@@ -74,6 +74,9 @@ paths:
                 username: 
                   type: string
                   description: Username scelto dall'utente
+                bio:
+                  type: string
+                  description: Biografia scritta dall'utente
 
       responses:
         '201':
@@ -88,6 +91,8 @@ paths:
                     description: Link alla nuova risorsa
         '400': 
           description: Errore nella creazione dell'utente
+        '409':
+          description: L'utente esiste già
 
   /utenti/{idUtente}:
     get:
