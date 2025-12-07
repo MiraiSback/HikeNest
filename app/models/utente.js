@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 export default mongoose.model('Utente', new Schema({ 
     username: String,
-    mail: String,
+    mail: { type: String, unique: true },
     password: String, 
     bio: String
 }));
