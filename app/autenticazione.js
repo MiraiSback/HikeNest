@@ -93,7 +93,7 @@ router.post('/', async function(req, res){
         token: token,
         email: user.mail,
         id: user._id,
-        self: 'api/'+user._id
+        self: 'api/utenti/'+user._id
     });
 
    
