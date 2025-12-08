@@ -21,7 +21,7 @@ const tokenChecker = function(req, res, next){
     }
     var token = splitted[1];
 
-    jwt.verify(token, process.env.SECRET_KEY, function(err, decoded){
+    jwt.verify(token, process.env.SEGRETO_JWT, function(err, decoded){
         if(err){
             return res.status(401).send({
                 success:false,
