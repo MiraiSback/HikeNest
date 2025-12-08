@@ -5,6 +5,9 @@ import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import Utente from './models/utente.js';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const router = express.Router();
 
