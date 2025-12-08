@@ -5,5 +5,5 @@ export default mongoose.model('Recensione', new Schema({
     idUtente: { type: Schema.Types.ObjectId, ref: 'utente' },
     idPercorso: { type: Schema.Types.ObjectId, ref: 'percorso' },
     testo: String,
-    valutazione: Number
+    valutazione: {type: Number, min : 1, max : 5}
 }));
