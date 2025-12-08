@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { OAuth2Client, PassThroughClient } from 'google-auth-library';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
-import Utente from './models/Utente.js';
+import Utente from './models/utente.js';
 
 
 const router = express.Router();
