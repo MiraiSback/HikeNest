@@ -37,7 +37,7 @@ router.get('/', async function (req, res) {
         const percorsi = await Percorso.find(filtro).exec();
 
         const risposta = percorsi.map(p => ({
-            self: `/api/percorsi/`+p._id,
+            self: `/api/percorsi/` + p._id,
             nome: p.nome,
             difficolta: p.difficolta,
             lunghezzaKm: p.lunghezzaKm,
@@ -107,6 +107,10 @@ router.post('/:idPercorso/recensioni', async function (req, res) {
         }
         else {
             const idUtente = req.loggedUser.id;
+            if (!req.body.valutazione || !req.body.testo.trim()) {
+                res.status(400).json({ message: "Campi mancanti, recensione non creata" });
+                return;
+            }
             //controllo che la valutazione sia tra 1 e 5
             if (req.body.valutazione < 1 || req.body.valutazione > 5) {
                 res.status(400).json({ message: "Valutazione deve essere tra 1 e 5" });

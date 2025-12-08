@@ -157,11 +157,13 @@ paths:
       responses: 
         '201':
           description: Gruppo creato
-          headers: 
-            location:
+          content:
+            application/json:
               schema:
-                type: string
-              description: Link al nuovo gruppo
+                type: object
+                properties:
+                  self:
+                    type: string
         '401': 
           description: Utente non autenticato
         '400': 
@@ -169,7 +171,7 @@ paths:
       
     
     
-  /gruppi/{IDGruppo}:
+  /gruppi/{idGruppo}:
     get:
       summary: Pagina di un gruppo
       description: Ottieni informazioni riguardo un singolo gruppo
@@ -177,7 +179,7 @@ paths:
         - BearerAuth: []
       parameters:
         - in : path
-          name: IDGruppo
+          name: idGruppo
           required: true
           schema: 
             type: string
