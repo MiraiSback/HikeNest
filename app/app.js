@@ -13,6 +13,9 @@ import registrazione from './registrazione.js';
 import autenticazione from './autenticazione.js';
 import tokenChecker from './tokenChecker.js';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 //import dotenv from 'dotenv';
 //dotenv.config();
 //commentato, per render non serve, usa per implementazioni locali
@@ -35,9 +38,10 @@ app.use(cors());//abilita request da un url differente
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));//abilita route per visualizzare file yaml
 
 //AGGIUNGERE QUI VISUALIZZAZIONE FRONT END QUANDO è FATTO
-app.use('/HikeNest', express.static( process.env.FRONTEND));
+//app.use('/HikeNest', express.static( process.env.FRONTEND));
+
 //per ora solo parte statica per testare le api
-app.use('/', express.static('static'));
+//app.use('/', express.static('static'));
 
 app.use('/api/autenticazione', autenticazione);
 app.use('/api/registrazione', registrazione);
