@@ -3,7 +3,10 @@ const { Schema } = mongoose;
 
 export default mongoose.model('Percorso', new Schema({ 
     nome: String,
-    difficolta: String,
+    difficolta: {
+        type: String,
+        enum: ['facile', 'medio', 'difficile']
+    },
     lunghezzaKm: Number,
     localitaPartenza: String
 }));

@@ -245,6 +245,29 @@ paths:
                   $ref: "#/components/schemas/Percorso"
         '401': 
           description: Utente non autenticato
+  /percorsi/{idPercorso}: 
+    get: 
+      summary: Info su un percorso
+      description: Ottieni tutte le informazioni di un percorso partendo dal suo Id
+      security:
+        - BearerAuth: []
+      parameters:
+      - in: path
+        name: idPercorso
+        required: true
+        schema:
+          type: string
+          description: Id del percorso da cercare
+      responses:
+        '200':
+          description: Percorso trovato
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Percorso'
+        '404':
+          description: Percorso non trovato
+
 
   /percorsi/{idPercorso}/recensioni:
     get:
