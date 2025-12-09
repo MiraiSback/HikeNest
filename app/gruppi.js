@@ -26,6 +26,11 @@ router.get('/', async function (req, res) {
 router.post('/', async function (req, res) {
     try {
         const idUser = req.loggedUser.id;
+        if(!req.body.nome || !req.body.esperienza || !req.body.descrizione){
+            //prima faccio un check su questi campi per vedere se esistono, poi faccio un check con trim per vedere che non siano vuoti
+            res.status(400).json({message: "Campi mancanti, gruppo non creato"});
+            return; 
+        }
         if(!req.body.nome.trim() || !req.body.idPercorso ||!req.body.esperienza.trim() ||!req.body.data ||!req.body.descrizione.trim()){
             res.status(400).json({message: "Campi mancanti, gruppo non creato"});
             return;
