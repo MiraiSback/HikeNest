@@ -123,7 +123,30 @@ paths:
           content: 
             application/json:
               schema:
-                $ref: '#/components/schemas/Utente'
+                type: object
+                properties:
+                  self:
+                    type: string
+                    description: Link all'utente
+                  mail:
+                    type: string
+                    format: email
+                    description: Email dell'utente
+                  username:
+                    type: string
+                    description: Username dell'utente
+                  bio:
+                    type: string
+                    description: Bio dell'utente
+                  nGruppi:
+                    type: number
+                    description: Numero di gruppi in cui l'utente partecipa
+                  kmTotali:
+                    type: number
+                    description: Chilometri totali percorsi dall'utente
+                  percorsoPreferito:
+                    type: string
+                    description: ID al percorso più frequentato dall'utente
         '404':  
           description: Utente non trovato
                 
