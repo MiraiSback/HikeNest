@@ -1,6 +1,6 @@
 import express from 'express';
 import Gruppo from './models/gruppo.js';
-
+import Percorso from './models/percorso.js';
 const router = express.Router();
 
 router.get('/', async function (req, res) {
@@ -33,6 +33,11 @@ router.post('/', async function (req, res) {
         }
         if(!req.body.nome.trim() || !req.body.idPercorso ||!req.body.esperienza.trim() ||!req.body.data ||!req.body.descrizione.trim()){
             res.status(400).json({message: "Campi mancanti, gruppo non creato"});
+            return;
+        }
+        const percorso = await Percorso.findById(req.body.idPercorso).exec();
+        if(!percorso){
+            res.status(400).json({message: "Il percorso inserito non esiste"});
             return;
         }
         const nuovoGruppo = new Gruppo({
