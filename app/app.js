@@ -13,7 +13,7 @@ import registrazione from './registrazione.js';
 import autenticazione from './autenticazione.js';
 import tokenChecker from './tokenChecker.js';
 
-import dotenv from 'dotenv';
+import dotenv from 'dotenv';    
 dotenv.config();
 
 //import dotenv from 'dotenv';
