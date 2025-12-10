@@ -16,10 +16,6 @@ import tokenChecker from './tokenChecker.js';
 import dotenv from 'dotenv';    
 dotenv.config();
 
-//import dotenv from 'dotenv';
-//dotenv.config();
-//commentato, per render non serve, usa per implementazioni locali
-
 
 //file = url del file, cartella = url cartella che contiene il file
 const _file = fileURLToPath(import.meta.url);
@@ -41,7 +37,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));//abilit
 //app.use('/HikeNest', express.static( process.env.FRONTEND));
 
 //per ora solo parte statica per testare le api
-//app.use('/', express.static('static'));
+app.use('/', express.static('static'));
 
 app.use('/api/autenticazione', autenticazione);
 app.use('/api/registrazione', registrazione);
