@@ -18,7 +18,8 @@ async function verify(token) {
     try {
         const ticket = await client.verifyIdToken({ idToken: token });
         return ticket.getPayload();
-    } catch (e) {
+    } catch (err) {
+        console.error(err);
         return null;
     }
 }
@@ -79,7 +80,7 @@ router.post('/', async function(req, res){
 
     //abbiamo trovato l'Utente, restituiamo il token
     var payload = {//tutto tranne la password obv
-        email: user.mail, 
+        mail: user.mail, 
         id: user._id,
         bio: user.bio,
         username: user.username
@@ -94,9 +95,10 @@ router.post('/', async function(req, res){
         success: true,
         message: 'Token creato',
         token: token,
-        email: user.mail,
+        mail: user.mail,
         id: user._id,
-        self: 'api/utenti/'+user._id
+        self: 'api/utenti/'+user._id,
+        username: user.username
     });
 
    
