@@ -509,7 +509,7 @@ components:
           description: "Livello di esperienza consigliato a chi partecipa"
         data:
           type: string
-          format: date-time
+          format: date
           description: "Data in cui si effettura l'hike"
         utenti:
           type: array
