@@ -12,7 +12,9 @@ function login(){
     .then((resp) => resp.json())
     .then(function(data) { // Here you get the data to modify as you please
         var testo = document.getElementById("testo");
-        testo.innerHTML = "<a href="+data.self+ ">"+data.username + "</a>";
+        testo.innerHTML = "<a href= '/miapagina.html'>"+data.username + "</a>";
+
+        localStorage.setItem("loggedUser", JSON.stringify(data));
         
         console.log(data);
         loggedUser.token = data.token;
@@ -23,4 +25,5 @@ function login(){
         // loggedUser.id = loggedUser.self.substring(loggedUser.self.lastIndexOf('/') + 1);
         return;
     })
+
 }
