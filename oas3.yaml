@@ -29,16 +29,19 @@ paths:
                   token:
                     type: string
                     description: Token di autenticazione
-                  email:
+                  mail:
                     type: string
-                    format: email
-                    description: Email dell'utente loggato
+                    format: mail
+                    description: mail dell'utente loggato
                   id:
                     type: string
                     description: ID dell'utente loggato
                   self:
                     type: string
                     description: Link all'utente loggato
+                  username:
+                    type: string
+                    description: Username dell'utente loggato
         '401' : 
           description: Credenziali sbagliate
       requestBody:
@@ -60,8 +63,8 @@ paths:
                   description: Password dell'utente
   /registrazione:
     post:
-      summary: Crea un utente con email, username e password
-      description: È possibile creare un utente inviando username, email e password al sistema
+      summary: Crea un utente con mail, username e password
+      description: È possibile creare un utente inviando username, mail e password al sistema
       requestBody:
         description: Nel body devono essere presenti username, mail e password
         required: true
@@ -76,8 +79,8 @@ paths:
               properties:
                 mail:
                   type: string
-                  format: email
-                  description: Indirizzo email dell'utente
+                  format: mail
+                  description: Indirizzo mail dell'utente
                 password:
                   type: string
                   description: Password dell'utente
@@ -130,8 +133,8 @@ paths:
                     description: Link all'utente
                   mail:
                     type: string
-                    format: email
-                    description: Email dell'utente
+                    format: mail
+                    description: mail dell'utente
                   username:
                     type: string
                     description: Username dell'utente
