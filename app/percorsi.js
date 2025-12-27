@@ -65,7 +65,7 @@ router.get('/:idPercorso', async function (req, res) {
         }
         else {
             res.status(200).json({
-                self: 'api/percorsi/' + hike._id,
+                self: '/api/percorsi/' + hike._id,
                 nome: hike.nome,
                 lunghezzaKm: hike.lunghezzaKm,
                 difficolta: hike.difficolta,
