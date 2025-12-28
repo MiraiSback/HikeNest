@@ -7,7 +7,7 @@ router.get('/', async function (req, res) {
     try {
         const gruppi = await Gruppo.find().exec();
         const risposta = gruppi.map(g => ({
-            self: 'api/gruppi/' + g._id,
+            self: '/api/gruppi/' + g._id,
             nome: g.nome,
             idPercorso: g.idPercorso,
             esperienza: g.esperienza,

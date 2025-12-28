@@ -9,7 +9,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-describe('GET api percorsi', () => {
+describe('Test API percorsi', () => {
     let percorsoSpy;
     let recensioneSpy;
     let segnalazioneSpy;
@@ -17,7 +17,6 @@ describe('GET api percorsi', () => {
     var options = {
         expiresIn: 86400 //24 ore di default
     }
-    console.log("SEGRETO AAAAA: " + process.env.SEGRETO_JWT);
     const token = jwt.sign({ id: '123', mail: 'pluto@test.com', bio: "Bio vuota", username: "Pluto" },
         process.env.SEGRETO_JWT,
         options
@@ -83,6 +82,8 @@ describe('GET api percorsi', () => {
     afterAll(async () => {
         percorsoSpy.mockRestore();
         percorsoByIdSpy.mockRestore();
+        recensioneSpy.mockRestore();
+        segnalazioneSpy.mockRestore();
     });
 
     test("GET /api/percorsi deve restituire l'array di percorsi", async () => {
@@ -154,6 +155,22 @@ describe('GET api percorsi', () => {
             });
     });
 
+    test("POST /api/percorsi/:idPercorso/recensioni senza fornire un testo restituisce 400", async () => {
+        return request(app)
+            .post('/api/percorsi/123/recensioni')
+            .set('Authorization', 'Bearer ' + token)
+            .send({ testo: "", valutazione: 4 })
+            .expect(400)
+    });
+
+    test("POST /api/percorsi/:idPercorso/recensioni con una valutazione non valida restituisce 400", async () => {
+        return request(app)
+            .post('/api/percorsi/123/recensioni')
+            .set('Authorization', 'Bearer ' + token)
+            .send({ testo: "Testo", valutazione: 0 })
+            .expect(400)
+    });
+
     test("GET /api/percorsi/:idPercorso/segnalazioni restituisce 200 e le segnalazioni di un percorso", async () => {
         return request(app)
             .get('/api/percorsi/123/segnalazioni')
@@ -168,6 +185,14 @@ describe('GET api percorsi', () => {
                     });
                 }
             });
+    });
+
+    test("POST /api/percorsi/:idPercorso/segnalazioni senza fornire un testo restituisce 400", async () => {
+        return request(app)
+            .post('/api/percorsi/123/segnalazioni')
+            .set('Authorization', 'Bearer ' + token)
+            .send({ testo: ""})
+            .expect(400)
     });
 
 });
