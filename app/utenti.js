@@ -46,7 +46,7 @@ router.get('/:id', async function (req, res) {
         }
 
         res.status(200).json({
-            self: 'api/utenti/' + user._id,
+            self: '/api/utenti/' + user._id,
             username: user.username,
             mail: user.mail,
             bio: user.bio,
