@@ -43,7 +43,7 @@ router.post('/', async function (req, res) {
         const nuovoGruppo = new Gruppo({
             nome: req.body.nome,
             idPercorso: req.body.idPercorso,
-            esperienza: req.body.esperienza,
+            esperienza: req.body.esperienza.toLowerCase(),
             data: req.body.data,
             idCreatore: idUser,
             descrizione: req.body.descrizione
