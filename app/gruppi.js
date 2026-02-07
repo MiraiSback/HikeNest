@@ -7,7 +7,7 @@ router.get('/', async function (req, res) {
     try {
         const gruppi = await Gruppo.find().exec();
         const risposta = gruppi.map(g => ({
-            self: 'api/gruppi/' + g._id,
+            self: '/api/gruppi/' + g._id,
             nome: g.nome,
             idPercorso: g.idPercorso,
             esperienza: g.esperienza,
@@ -53,7 +53,7 @@ router.post('/', async function (req, res) {
 
         res.status(201).json({
             message: "Gruppo creato",
-            self: 'api/gruppi/' + nuovoGruppo._id
+            self: '/api/gruppi/' + nuovoGruppo._id
         });
 
 
@@ -69,7 +69,7 @@ router.get('/gruppiUtente', async function(req, res){
         const gruppi = await Gruppo.find({utenti: idUtente}).exec();
 
         const risposta = gruppi.map(g =>({
-            self: 'api/gruppi/'+g._id,
+            self: '/api/gruppi/'+g._id,
             nome: g.nome,
             idPercorso: g.idPercorso,
             esperienza: g.esperienza,
@@ -93,7 +93,7 @@ router.get('/:idGruppo', async function (req, res) {
         }
         else {
             res.status(200).json({
-                self: 'api/gruppi/' + gruppo._id,
+                self: '/api/gruppi/' + gruppo._id,
                 nome: gruppo.nome,
                 idPercorso: gruppo.idPercorso,
                 esperienza: gruppo.esperienza,
@@ -118,7 +118,7 @@ router.post('/:idGruppo/persone', async function(req, res){
         else{
             const idUtente = req.loggedUser.id;
             if(gruppo.utenti.includes(idUtente)){
-                res.status(400).json({message: "L'utente è gia presente nel gruppo"});
+                res.status(400).json({message: "L'utente è già presente nel gruppo"});
                 return;
             }
             else{

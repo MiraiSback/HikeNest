@@ -29,16 +29,19 @@ paths:
                   token:
                     type: string
                     description: Token di autenticazione
-                  email:
+                  mail:
                     type: string
                     format: email
-                    description: Email dell'utente loggato
+                    description: mail dell'utente loggato
                   id:
                     type: string
                     description: ID dell'utente loggato
                   self:
                     type: string
                     description: Link all'utente loggato
+                  username:
+                    type: string
+                    description: Username dell'utente loggato
         '401' : 
           description: Credenziali sbagliate
       requestBody:
@@ -60,8 +63,8 @@ paths:
                   description: Password dell'utente
   /registrazione:
     post:
-      summary: Crea un utente con email, username e password
-      description: È possibile creare un utente inviando username, email e password al sistema
+      summary: Crea un utente con mail, username e password
+      description: È possibile creare un utente inviando username, mail e password al sistema
       requestBody:
         description: Nel body devono essere presenti username, mail e password
         required: true
@@ -77,7 +80,7 @@ paths:
                 mail:
                   type: string
                   format: email
-                  description: Indirizzo email dell'utente
+                  description: Indirizzo mail dell'utente
                 password:
                   type: string
                   description: Password dell'utente
@@ -103,7 +106,34 @@ paths:
           description: Errore nella creazione dell'utente
         '409':
           description: L'utente esiste già
+  /utenti: 
+    post:
+      summary: Aggiorna bio e username di un utente
+      description: Consente ad un utente autenticato di aggiornare la sua bio e il suo username 
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                username: 
+                  type: string
+                  description: Nuovo username da usare
+                bio:
+                  type: string
+                  description: Nuova bio da usare
+      responses:
+        '200':
+          description: Profilo aggiornato
+        '400':
+          description: Dati forniti non validi
+        '401':
+          description: Utente non autenticato
 
+      
   /utenti/{idUtente}:
     get:
       summary: Profilo di un utente
@@ -131,7 +161,7 @@ paths:
                   mail:
                     type: string
                     format: email
-                    description: Email dell'utente
+                    description: mail dell'utente
                   username:
                     type: string
                     description: Username dell'utente
@@ -148,8 +178,7 @@ paths:
                     type: string
                     description: ID al percorso più frequentato dall'utente
         '404':  
-          description: Utente non trovato
-                
+          description: Utente non trovato              
   /gruppi:
     get:
       summary: Lista dei gruppi

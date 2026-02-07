@@ -7,8 +7,12 @@ const router = express.Router();
 router.get('/', async function (req, res) {
     try {
 
-        //leggi tutti i parametri dalla query(se non ci sono non da errore)
-        const { minKm, maxKm, difficolta, nome, localita } = req.query;
+        const minKm = req.query.minKm;
+        const maxKm = req.query.maxKm;
+        const difficolta = req.query.difficolta;
+        const nome = req.query.nome;
+        const localita = req.query.localita;
+
 
         let filtro = {};
 
@@ -61,7 +65,7 @@ router.get('/:idPercorso', async function (req, res) {
         }
         else {
             res.status(200).json({
-                self: 'api/percorsi/' + hike._id,
+                self: '/api/percorsi/' + hike._id,
                 nome: hike.nome,
                 lunghezzaKm: hike.lunghezzaKm,
                 difficolta: hike.difficolta,

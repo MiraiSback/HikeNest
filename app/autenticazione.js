@@ -71,7 +71,7 @@ router.post('/', async function(req, res){
 
         const pwdValida = await bcrypt.compare(req.body.password, user.password);
         if(!pwdValida){
-            res.status(401).json({message: 'Autenticazione fallita, password errat'});
+            res.status(401).json({message: 'Autenticazione fallita, password errata'});
             return;
         }
         
@@ -97,7 +97,7 @@ router.post('/', async function(req, res){
         token: token,
         mail: user.mail,
         id: user._id,
-        self: 'api/utenti/'+user._id,
+        self: '/api/utenti/'+user._id,
         username: user.username
     });
 
