@@ -5,6 +5,49 @@ import Percorso from './models/percorso.js';
 
 const router = express.Router();
 
+router.post('/', async function(req, res) {
+
+  const idUtente = req.loggedUser.id;
+
+  const newUsername = req.body.username;
+  const newBio = req.body.bio;
+
+  // Validazione username
+  if (newUsername && newUsername.trim() === "") {
+    return res.status(400).json({ message: 'Dati forniti non validi' });
+  }
+
+  // Controllo duplicati (solo se cambia username)
+  if (newUsername) {
+    const esisteUser = await Utente.findOne({ username: newUsername });
+
+    if (esisteUser && esisteUser._id.toString() !== idUtente) {
+      return res.status(409).json({ message: 'Questo username è già usato' });
+    }
+  }
+
+  const oldUtente = await Utente.findById(idUtente);
+
+  if (!oldUtente) {
+    return res.status(404).json({ message: 'Utente non trovato' });
+  }
+
+  // Aggiornamenti
+  if (newUsername) {
+    oldUtente.username = newUsername;
+  }
+
+  if (newBio && newBio.trim() !== "") {
+    oldUtente.bio = newBio;
+  }
+
+  await oldUtente.save();
+
+  res.status(200).json({ message: 'Profilo aggiornato' });
+
+});
+
+
 router.get('/:id', async function (req, res) {
     var user = await Utente.findById(req.params.id).exec();
     if (!user) {
@@ -56,5 +99,6 @@ router.get('/:id', async function (req, res) {
         });
     }
 });
+
 
 export default router;
