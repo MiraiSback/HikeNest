@@ -11,7 +11,7 @@ export default mongoose.model('Gruppo', new Schema({
     data: Date,
     utenti: [{
         type: Schema.Types.ObjectId,
-        ref: "utente",
+        ref: 'utente',
         default: []
     }],
     idCreatore: {type: Schema.Types.ObjectId, ref: 'utente'},

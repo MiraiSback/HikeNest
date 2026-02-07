@@ -1,6 +1,7 @@
 import express from 'express';
 import Gruppo from './models/gruppo.js';
 import Percorso from './models/percorso.js';
+import mongoose from 'mongoose';
 const router = express.Router();
 
 router.get('/', async function (req, res) {
@@ -40,13 +41,16 @@ router.post('/', async function (req, res) {
             res.status(400).json({message: "Il percorso inserito non esiste"});
             return;
         }
+
+        const idPerDB = new mongoose.Types.ObjectId(req.loggedUser.id); //nella transizione l'id era diventato una stringa, ora deve diventare di nuovo un identificatore
         const nuovoGruppo = new Gruppo({
             nome: req.body.nome,
             idPercorso: req.body.idPercorso,
             esperienza: req.body.esperienza.toLowerCase(),
             data: req.body.data,
             idCreatore: idUser,
-            descrizione: req.body.descrizione
+            descrizione: req.body.descrizione,
+            utenti: [idPerDB]
         });
 
         await nuovoGruppo.save();
