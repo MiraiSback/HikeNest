@@ -31,7 +31,7 @@ paths:
                     description: Token di autenticazione
                   mail:
                     type: string
-                    format: mail
+                    format: email
                     description: mail dell'utente loggato
                   id:
                     type: string
@@ -79,7 +79,7 @@ paths:
               properties:
                 mail:
                   type: string
-                  format: mail
+                  format: email
                   description: Indirizzo mail dell'utente
                 password:
                   type: string
@@ -106,7 +106,34 @@ paths:
           description: Errore nella creazione dell'utente
         '409':
           description: L'utente esiste già
+  /utenti: 
+    post:
+      summary: Aggiorna bio e username di un utente
+      description: Consente ad un utente autenticato di aggiornare la sua bio e il suo username 
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                username: 
+                  type: string
+                  description: Nuovo username da usare
+                bio:
+                  type: string
+                  description: Nuova bio da usare
+      responses:
+        '200':
+          description: Profilo aggiornato
+        '400':
+          description: Dati forniti non validi
+        '401':
+          description: Utente non autenticato
 
+      
   /utenti/{idUtente}:
     get:
       summary: Profilo di un utente
@@ -133,7 +160,7 @@ paths:
                     description: Link all'utente
                   mail:
                     type: string
-                    format: mail
+                    format: email
                     description: mail dell'utente
                   username:
                     type: string
@@ -151,8 +178,7 @@ paths:
                     type: string
                     description: ID al percorso più frequentato dall'utente
         '404':  
-          description: Utente non trovato
-                
+          description: Utente non trovato              
   /gruppi:
     get:
       summary: Lista dei gruppi
