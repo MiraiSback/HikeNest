@@ -8,8 +8,8 @@ info:
 servers:
   - url: http://localhost:8080/api
     description: Localhost
-  - url: http://questositononesiste.com
-    description: da cambiare in fase di deploy
+  - url: https://hikenest.onrender.com/
+    description: Indirizzo di hosting su render
 paths: 
   /autenticazione:
     post:
