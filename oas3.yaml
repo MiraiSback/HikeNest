@@ -248,6 +248,78 @@ paths:
         '401': 
           description: Utente non autenticato
   
+  #ID DELL'UTENTE va preso dal jwt
+  /gruppi/{idGruppo}/persone:
+    post: 
+      summary: Aggiunta di un utente ad un gruppo
+      description: Un utente viene aggiunto ad un gruppo già esistente
+      security:
+        - BearerAuth: []
+      parameters:
+      - in: path
+        name: idGruppo
+        required: true
+        schema:
+          type: string
+          description: Id del gruppo al quale unirsi
+      responses: 
+        '201':  
+          description: Utente aggiunto
+        '400':
+          description: Impossibile aggregarsi al gruppo, azione fallita
+        '401': 
+          description: Utente non autenticato
+    get:
+      summary: Numero di persone in un gruppo
+      description: Ottieni il numero di persone che si sono aggiunte ad un gruppo
+      security:
+        - BearerAuth: []
+      parameters:
+      - in: path
+        name: idGruppo
+        required: true
+        schema:
+          type: string
+          description: Id del gruppo del quale richidere le informazioni sugli utenti
+      responses: 
+        '200': 
+          description: Hai ottenuto i dati richiesti
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  numeroUtenti:
+                    type: integer
+                    description: Numero di utenti nel gruppo
+        '404':  
+          description: Gruppo  non trovato
+  
+  #questa è una richiesta fatta da un utente loggato
+  #invia il suo token e da quello il server ottiene l'id e risponde con i gruppi
+  #cosi viene rispettata la privacy
+  /gruppi/gruppiUtente:
+    get:
+      summary: Gruppi a cui un utente appartiene
+      description: Elenco di tutti i gruppi a cui un utente appartiene
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Ottenuta la lista di gruppi di un utente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:  
+                  $ref: '#/components/schemas/Gruppo'
+        '401':
+          description: Token mancante o non valido
+
+      
+
+
+
   /percorsi:
     get:
       summary: Lista di tutti i percorsi
@@ -424,76 +496,6 @@ paths:
           description: Utente non autenticato
 
         
-  #ID DELL'UTENTE va preso dal jwt
-  /gruppi/{idGruppo}/persone:
-    post: 
-      summary: Aggiunta di un utente ad un gruppo
-      description: Un utente viene aggiunto ad un gruppo già esistente
-      security:
-        - BearerAuth: []
-      parameters:
-      - in: path
-        name: idGruppo
-        required: true
-        schema:
-          type: string
-          description: Id del gruppo al quale unirsi
-      responses: 
-        '201':  
-          description: Utente aggiunto
-        '400':
-          description: Impossibile aggregarsi al gruppo, azione fallita
-        '401': 
-          description: Utente non autenticato
-    get:
-      summary: Numero di persone in un gruppo
-      description: Ottieni il numero di persone che si sono aggiunte ad un gruppo
-      security:
-        - BearerAuth: []
-      parameters:
-      - in: path
-        name: idGruppo
-        required: true
-        schema:
-          type: string
-          description: Id del gruppo del quale richidere le informazioni sugli utenti
-      responses: 
-        '200': 
-          description: Hai ottenuto i dati richiesti
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  numeroUtenti:
-                    type: integer
-                    description: Numero di utenti nel gruppo
-        '404':  
-          description: Gruppo  non trovato
-  
-  #questa è una richiesta fatta da un utente loggato
-  #invia il suo token e da quello il server ottiene l'id e risponde con i gruppi
-  #cosi viene rispettata la privacy
-  /gruppi/gruppiUtente:
-    get:
-      summary: Gruppi a cui un utente appartiene
-      description: Elenco di tutti i gruppi a cui un utente appartiene
-      security:
-        - BearerAuth: []
-      responses:
-        '200':
-          description: Ottenuta la lista di gruppi di un utente
-          content:
-            application/json:
-              schema:
-                type: array
-                items:  
-                  $ref: '#/components/schemas/Gruppo'
-        '401':
-          description: Token mancante o non valido
-
-      
-
 
   
 
